@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <img src="./assets/logo.png" style="width:100px">
+    <welcome></welcome>
+    <calendar></calendar>
   </div>
 </template>
 
 <script>
-import Hello from './components/Booking'
+import Welcome from './components/Welcome'
+import Calendar from './components/Calendar'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Welcome,
+    Calendar
   }
 }
 </script>
