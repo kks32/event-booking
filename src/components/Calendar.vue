@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Calendar from 'vue-datepicker'
+import Calendar from './vue-datepicker-es6'
 
 export default {
   data () {
