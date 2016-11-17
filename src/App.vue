@@ -3,18 +3,21 @@
     <img src="./assets/logo.png" style="width:100px">
     <welcome></welcome>
     <calendar></calendar>
+    <tickets></tickets>
   </div>
 </template>
 
 <script>
 import Welcome from './components/Welcome'
 import Calendar from './components/Calendar'
+import Tickets from './components/Tickets'
 
 export default {
   name: 'app',
   components: {
     Welcome,
-    Calendar
+    Calendar,
+    Tickets
   }
 }
 </script>

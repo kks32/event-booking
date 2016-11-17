@@ -1,3 +1,6 @@
+/* https://github.com/hilongjw/vue-datepicker 
+   Fixes issue with datepicker on restricted dates
+   in the next month */
 <style scoped>
 .datepicker-overlay {
   position: fixed;
