@@ -4,6 +4,7 @@
     <welcome></welcome>
     <calendar></calendar>
     <tickets></tickets>
+    <ticketselection></ticketselection>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import Welcome from './components/Welcome'
 import Calendar from './components/Calendar'
 import Tickets from './components/Tickets'
+import TicketSelection from './components/TicketSelection'
 
 export default {
   name: 'app',
   components: {
     Welcome,
     Calendar,
-    Tickets
+    Tickets,
+    TicketSelection
   }
 }
 </script>
