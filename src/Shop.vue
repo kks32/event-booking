@@ -1,17 +1,19 @@
 <template>
   <div id="shop">
     <Calendar></Calendar>
-    <router-view></router-view>
+    <Session></Session>
   </div>
 </template>
 
 <script>
 import Calendar from './components/Calendar'
+import Session from './components/Session'
 
 export default {
   name: 'shop',
   components: {
-    Calendar
+    Calendar,
+    Session
   }
 }
 </script>

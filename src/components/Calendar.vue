@@ -1,10 +1,12 @@
 <template>
-  <div class="card">
-    <div class="row">
-      <span>Booking date：</span>
-      <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
-    </div>
-  </div>
+  <v-container fluid>
+    <v-row>
+      <v-col xs12 md6>
+        <span>Booking date：</span>
+        <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -68,4 +70,3 @@ export default {
   }
 }
 </script>
-
