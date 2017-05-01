@@ -4,37 +4,37 @@
     <v-snackbar
       :timeout="3000"
       :bottom="true"
-      v-model="cancelprj"
+      v-model="cancelpurchase"
     >
-      Project is cancelled!
-      <v-btn flat class="pink--text" @click.native="cancelprj = false">Close</v-btn>
+      Purchase is cancelled!
+      <v-btn flat class="pink--text">Close</v-btn>
     </v-snackbar>
 
-    <v-stepper v-model="prj">
+    <v-stepper v-model="purchasestep">
       <v-stepper-header>
-        <v-stepper-step step="1" v-bind:complete="prj > 1">Select date and session</v-stepper-step>
+        <v-stepper-step step="1" v-bind:complete="purchasestep > 1">Select date and session</v-stepper-step>
         <v-divider />
-        <v-stepper-step step="2" v-bind:complete="prj > 2">Select tickets</v-stepper-step>
+        <v-stepper-step step="2" v-bind:complete="purchasestep > 2">Select tickets</v-stepper-step>
         <v-divider />
         <v-stepper-step step="3">Review and pay</v-stepper-step>
       </v-stepper-header>
       <v-stepper-content step="1">
         <Calendar></Calendar>
         <Session></Session>
-        <v-btn primary @click.native="prj = 2">Continue</v-btn>
-        <v-btn flat @click.native="cancelprj = true">Cancel</v-btn>
+        <v-btn primary @click.native="purchasestep = 2">Continue</v-btn>
+        <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1">Cancel</v-btn>
       </v-stepper-content>
       <v-stepper-content step="2">
-        <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
-        <v-btn primary @click.native="prj = 3">Continue</v-btn>
-        <v-btn flat @click.native="prj = 1">Back</v-btn>
-        <v-btn flat @click.native="cancelprj = true">Cancel</v-btn>
+        <Tickets></Tickets>
+        <v-btn primary @click.native="purchasestep = 3">Continue</v-btn>
+        <v-btn flat @click.native="purchasestep = 1">Back</v-btn>
+        <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1">Cancel</v-btn>
       </v-stepper-content>
       <v-stepper-content step="3">
         <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
-        <v-btn primary @click.native="">Confirm and Pay</v-btn>
-        <v-btn flat @click.native="prj = 2">Back</v-btn>
-        <v-btn flat @click.native="cancelprj = true">Cancel</v-btn>
+        <v-btn primary @click.native="">Buy</v-btn>
+        <v-btn flat @click.native="purchasestep = 2">Back</v-btn>
+        <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1">Cancel</v-btn>
       </v-stepper-content>
     </v-stepper>
 
@@ -44,17 +44,19 @@
 <script>
 import Calendar from './components/Calendar'
 import Session from './components/Session'
+import Tickets from './components/Tickets'
 
 export default {
   name: 'shop',
   components: {
     Calendar,
-    Session
+    Session,
+    Tickets
   },
   data () {
     return {
-      cancelprj: false,
-      prj: 0
+      cancelpurchase: false,
+      purchasestep: 0
     }
   }
 }

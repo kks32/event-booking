@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col xs12>
-        <v-subheader>Select date</v-subheader>
+        <v-subheader>Select date: {{startTime.time}}</v-subheader>
         <v-card class="lighten-4 elevation-0">
           <v-card-text>
             <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
@@ -20,9 +20,6 @@ export default {
   data () {
     return {
       startTime: {
-        time: ''
-      },
-      endtime: {
         time: ''
       },
       option: {
