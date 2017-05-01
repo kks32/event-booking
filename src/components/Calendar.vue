@@ -1,9 +1,13 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col xs12 md6>
-        <span>Booking date：</span>
-        <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
+      <v-col xs12>
+        <v-subheader>Select date</v-subheader>
+        <v-card class="lighten-4 elevation-0">
+          <v-card-text>
+            <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -60,8 +64,8 @@ export default {
       },
       {
         type: 'fromto',
-        from: '2017-03-21',
-        to: '2017-04-20'
+        from: '2017-04-30',
+        to: '2017-06-30'
       }]
     }
   },

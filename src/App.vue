@@ -22,7 +22,7 @@ import Toolbar from './components/Toolbar'
 export default {
   data () {
     return {
-      msg: 'Kings ticket platform'
+      msg: 'King\'s College Chapel tickets'
     }
   },
   components: {Toolbar, Foot}
