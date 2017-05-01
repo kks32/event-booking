@@ -6,6 +6,7 @@
         <v-card class="lighten-4 elevation-0">
           <v-card-text>
             <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
+            <v-btn v-if="startTime.time!=''" class="primary white--text">Accept<v-icon right>check_circle</v-icon></v-btn>
           </v-card-text>
         </v-card>
       </v-col>

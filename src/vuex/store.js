@@ -31,20 +31,20 @@ const authmodule = {
 }
 
 // App module
-const layoutmodule = {
+const purchasemodule = {
   namespaced: true,
   state: {
-    // Sidebar
-    sidebar: true
+    // Date
+    date: ''
   },
   getters: {
     get_sidebar_status: (state) => {
-      return state.sidebar
+      return state.date
     }
   },
   mutations: {
-    switch_sidebar_status (state) {
-      state.sidebar = !state.sidebar
+    switch_sidebar_status (state, value) {
+      state.date = value
     }
   }
 }
@@ -53,7 +53,7 @@ const layoutmodule = {
 const store = new Vuex.Store({
   modules: {
     auth: authmodule,
-    layout: layoutmodule
+    purchase: purchasemodule
   }
 })
 

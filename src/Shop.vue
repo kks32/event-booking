@@ -20,7 +20,8 @@
       <v-stepper-content step="1">
         <Calendar></Calendar>
         <Session></Session>
-        <v-btn primary @click.native="purchasestep = 2">Continue</v-btn>
+        <v-btn primary v-if="this.$store.getters['purchase/date'] != ''" @click.native="purchasestep = 2">Continue</v-btn>
+        <v-btn primary v-if="date == ''" @click.native="purchasestep = 2" disabled>Continue</v-btn>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-2"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
       </v-stepper-content>
       <v-stepper-content step="2">
@@ -54,6 +55,7 @@ export default {
   },
   data () {
     return {
+      date: 'x',
       cancelpurchase: false,
       purchasestep: 0
     }
