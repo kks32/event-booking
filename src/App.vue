@@ -1,37 +1,35 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png" style="width:100px">
-    <welcome></welcome>
-    <calendar></calendar>
-    <tickets></tickets>
-    <ticketselection></ticketselection>
-  </div>
+  <v-app id="app" top-toolbar>
+    <header>
+      <Toolbar></Toolbar>
+    </header>
+    <main>
+      <v-content>
+        <v-container fluid>
+        <h3>{{msg}}</h3>
+          <router-view></router-view>
+        </v-container>
+      </v-content>
+    </main>
+    <Foot></Foot>
+  </v-app>
 </template>
 
 <script>
-import Welcome from './components/Welcome'
-import Calendar from './components/Calendar'
-import Tickets from './components/Tickets'
-import TicketSelection from './components/TicketSelection'
+import Foot from './components/Footer'
+import Toolbar from './components/Toolbar'
 
 export default {
-  name: 'app',
-  components: {
-    Welcome,
-    Calendar,
-    Tickets,
-    TicketSelection
-  }
+  data () {
+    return {
+      msg: 'Kings ticket platform'
+    }
+  },
+  components: {Toolbar, Foot}
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+// Style
+<style lang="stylus">
+ @import './stylus/main'
 </style>

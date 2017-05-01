@@ -1,9 +1,38 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
+
 import App from './App'
+import Shop from './Shop'
+import store from './vuex/store'
+
+Vue.config.productionTip = false
+
+// Style
+require('./stylus/main.styl')
+
+Vue.use(Vuetify)
+Vue.use(VueResource)
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    component: Shop
+  }
+]
+
+const router = new VueRouter({
+  routes,
+  mode: 'history',
+  base: __dirname
+})
 
 /* eslint-disable no-new */
 new Vue({
+  store,
   el: '#app',
-  template: '<App/>',
-  components: { App }
+  router,
+  render: h => h(App)
 })
