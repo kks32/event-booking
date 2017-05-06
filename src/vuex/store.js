@@ -35,16 +35,23 @@ const purchasemodule = {
   namespaced: true,
   state: {
     // Date
-    date: ''
+    date: '',
+    session: ''
   },
   getters: {
     getdate: (state) => {
       return state.date
+    },
+    getsession: (state) => {
+      return state.session
     }
   },
   actions: {
     setdate ({commit, state}, value) {
       state.date = value
+    },
+    setsession ({commit, state}, sess) {
+      state.session = sess
     }
   }
 }

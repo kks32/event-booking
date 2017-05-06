@@ -11,7 +11,7 @@
       <v-container fluid>
         <v-row>
           <v-col xs6>
-            <v-subheader v-text="'Category'" />
+            <v-subheader bold v-text="'Category'" />
           </v-col>
           <v-col xs3>
             <v-subheader v-text="'# of tickets'" />
