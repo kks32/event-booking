@@ -38,12 +38,12 @@ const purchasemodule = {
     date: ''
   },
   getters: {
-    get_sidebar_status: (state) => {
+    getdate: (state) => {
       return state.date
     }
   },
-  mutations: {
-    switch_sidebar_status (state, value) {
+  actions: {
+    setdate ({commit, state}, value) {
       state.date = value
     }
   }
