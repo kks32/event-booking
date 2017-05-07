@@ -37,6 +37,7 @@ const purchasemodule = {
     // Date
     date: '',
     session: '',
+    ticketvalidation: false,
     ntickets: 0
   },
   getters: {
@@ -48,6 +49,9 @@ const purchasemodule = {
     },
     getntickets: (state) => {
       return state.ntickets
+    },
+    get_ticketvalidation: (state) => {
+      return state.ticketvalidation
     }
   },
   actions: {
@@ -59,6 +63,9 @@ const purchasemodule = {
     },
     setntickets: ({commit, state}, number) => {
       state.ntickets = number
+    },
+    set_ticketvalidation: ({commit, state}, bool) => {
+      state.ticketvalidation = bool
     }
   }
 }

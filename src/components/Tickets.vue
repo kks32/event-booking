@@ -13,14 +13,14 @@
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
         <v-row>
-          <v-col xs6>
-            <strong><v-subheader v-text="'Category'" /></strong>
+          <v-col xs6 class="text-lg-left">
+            <h6>Category</h6>
           </v-col>
-          <v-col xs3>
-            <v-subheader v-text="'# of tickets'" />
+          <v-col xs3 class="text-lg-middle">
+            <h6># of tickets</h6>
           </v-col>
-          <v-col xs3 class="text-md-center">
-            <v-subheader v-text="'Total (£)'" />
+          <v-col xs3 class="total text-lg-middle">
+            <h6>Total (£)</h6>
           </v-col>
         </v-row>
         <v-row>
@@ -57,11 +57,11 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col xs9>
-            <h4>Total</h4>
+          <v-col xs9 class="text-lg-right">
+            <h6>Total</h6>
           </v-col>
           <v-col xs3 class="text-lg-center">
-            <p><strong>{{ total }}</strong></p>
+            <p><strong>£ {{ total }}</strong></p>
           </v-col>
         </v-row>
       </v-container>
@@ -100,17 +100,20 @@ export default {
   },
   watch: {
     ntickets () {
-      if (this.ntickets > 9) {
-        alert('Number of tickets should be below 10')
-      }
       this.$store.dispatch('purchase/setntickets', this.ntickets)
+      this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
+    }
+  },
+  methods: {
+    validate () {
+      return this.$store.getters['purchase/getntickets'] <= 10 && this.$store.getters['purchase/getntickets'] > 0 && (this.adult > 0 || this.concession > 0)
     }
   }
 }
 </script>
 
 <style scoped>
-.tickets {
-  z-index: 998
+.total {
+  text-align: center;
 }
 </style scoped>

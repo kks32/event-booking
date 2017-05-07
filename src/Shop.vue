@@ -28,7 +28,7 @@
         <Tickets></Tickets>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 1" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
-        <v-btn primary v-if="this.$store.getters['purchase/getntickets'] <= 10 && this.$store.getters['purchase/getntickets'] > 0" @click.native="purchasestep = 3">Continue</v-btn>
+        <v-btn primary v-if="this.$store.getters['purchase/get_ticketvalidation']" @click.native="purchasestep = 3">Continue</v-btn>
         <v-btn primary v-else @click.native="purchasestep = 3" disabled>Continue</v-btn>
       </v-stepper-content>
       <v-stepper-content step="3">
@@ -43,6 +43,7 @@
 
 <script>
 import Calendar from './components/Calendar'
+import Datepicker from 'vuejs-datepicker'
 import Session from './components/Session'
 import Tickets from './components/Tickets'
 
@@ -50,6 +51,7 @@ export default {
   name: 'shop',
   components: {
     Calendar,
+    Datepicker,
     Session,
     Tickets
   },

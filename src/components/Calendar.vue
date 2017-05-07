@@ -62,7 +62,7 @@ export default {
       },
       {
         type: 'fromto',
-        from: '2017-05-06',
+        from: '2017-05-07',
         to: '2017-06-30'
       }]
     }
