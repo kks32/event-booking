@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col xs12>
-        <v-subheader>Select session: {{ session || 'Not selected' }}</v-subheader>
+        <v-subheader>Select session: {{ this.$store.getters['purchase/getsession'] || 'Not selected' }}</v-subheader>
         <v-card class="grey lighten-4 elevation-1">
           <v-card-text>
             <v-radio label="Morning (9:00 - 12:00)" primary v-model="session" value="Morning" light />
@@ -20,6 +20,14 @@ export default {
   data () {
     return {
       session: 'Morning'
+    }
+  },
+  mounted () {
+    this.$store.dispatch('purchase/setsession', this.session)
+  },
+  watch: {
+    session () {
+      this.$store.dispatch('purchase/setsession', this.session)
     }
   }
 }

@@ -47,11 +47,11 @@ const purchasemodule = {
     }
   },
   actions: {
-    setdate ({commit, state}, value) {
+    setdate: ({commit, state}, value) => {
       state.date = value
     },
-    setsession ({commit, state}, sess) {
-      state.session = sess
+    setsession: ({commit, state}, value) => {
+      state.session = value
     }
   }
 }

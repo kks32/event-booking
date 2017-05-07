@@ -37,7 +37,6 @@
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
       </v-stepper-content>
     </v-stepper>
-
   </div>
 </template>
 
@@ -55,7 +54,6 @@ export default {
   },
   data () {
     return {
-      date: 'x',
       cancelpurchase: false,
       purchasestep: 0
     }
