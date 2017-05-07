@@ -36,7 +36,8 @@ const purchasemodule = {
   state: {
     // Date
     date: '',
-    session: ''
+    session: '',
+    ntickets: 0
   },
   getters: {
     getdate: (state) => {
@@ -44,6 +45,9 @@ const purchasemodule = {
     },
     getsession: (state) => {
       return state.session
+    },
+    getntickets: (state) => {
+      return state.ntickets
     }
   },
   actions: {
@@ -52,6 +56,9 @@ const purchasemodule = {
     },
     setsession: ({commit, state}, value) => {
       state.session = value
+    },
+    setntickets: ({commit, state}, number) => {
+      state.ntickets = number
     }
   }
 }

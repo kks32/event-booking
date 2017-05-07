@@ -6,7 +6,7 @@
         <v-card class="lighten-4 elevation-0">
           <v-card-text>
             <date-picker :date="startTime" :option="option" :limit="limit"></date-picker>
-            <v-btn v-if="startTime.time!=''" class="primary white--text" @click.native="setdate()">Accept<v-icon right>check_circle</v-icon></v-btn>
+            <v-btn v-if="startTime.time!=''" class="primary white--text" @click.native="setdate()">Accept date<v-icon right>check_circle</v-icon></v-btn>
           </v-card-text>
         </v-card>
       </v-col>
@@ -62,7 +62,7 @@ export default {
       },
       {
         type: 'fromto',
-        from: '2017-04-30',
+        from: '2017-05-06',
         to: '2017-06-30'
       }]
     }
