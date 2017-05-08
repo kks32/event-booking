@@ -3,6 +3,7 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 
+import Admin from './Admin'
 import App from './App'
 import Shop from './Shop'
 import store from './vuex/store'
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/',
     component: Shop
+  },
+  {
+    path: '/admin',
+    component: Admin
   }
 ]
 

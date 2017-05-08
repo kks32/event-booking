@@ -1,20 +1,20 @@
 <template>
   <div id="date">
   	<div class="example">
-  		<h3>With minimum and maximum date range</h3>
+  		<h6>Check ticket sales date range</h6>
   		<datepicker :disabled="disabled"></datepicker>
   		<code>&lt;datepicker :disabled="disabled"&gt;&lt;/datepicker&gt;</code>
   		<div class="settings">
   			<h5>Settings</h5>
   			<div class="form-group">
-  				<label>Disabled to:</label>
+  				<label>Start date:</label>
   				<datepicker v-on:selected="disableTo"></datepicker>
   			</div>
   			<div class="form-group">
-  				<label>Disabled from:</label>
+  				<label>End date:</label>
   				<datepicker v-on:selected="disableFrom"></datepicker>
   			</div>
-  			<pre>disabled: {{ disabled }}</pre>
+  			<pre>selected: {{ disabled }}</pre>
   		</div>
   	</div>
   </div>
@@ -74,7 +74,7 @@ input,
 select {
   padding: .74em .4em;
   font-size: 99%;
-  border: 0px solid #ccc;
+  border: 0px solid white;
   width: 99%
 }
 
