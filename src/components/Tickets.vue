@@ -77,7 +77,6 @@
             ></v-select>
           </v-col>
           <v-col xs3>
-            {{guides.length}} and {{nguidebooks}}
             <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
               v-bind:rules="[() => (guides.length === 0 || nguidebooks !== 0) || 'Please select at least one guide']"
               max-height="200" light item-value="number" single-line auto />
