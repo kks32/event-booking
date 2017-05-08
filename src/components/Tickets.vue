@@ -144,6 +144,10 @@ export default {
     total () {
       this.$store.dispatch('purchase/setntickets', this.ntickets)
       this.$store.dispatch('purchase/set_nguidebooks', this.nguidebooks)
+      this.$store.dispatch('purchase/settotal', this.total)
+      this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
+    },
+    ntickets () {
       this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
     }
   },

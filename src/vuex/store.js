@@ -35,14 +35,19 @@ const purchasemodule = {
   namespaced: true,
   state: {
     // Date
+    uuid: '',
     date: '',
     session: '',
     ticketvalidation: false,
     ntickets: 0,
     nguidebooks: 0,
+    total: 0,
     guidebooks: []
   },
   getters: {
+    getuuid: (state) => {
+      return state.uuid
+    },
     getdate: (state) => {
       return state.date
     },
@@ -51,6 +56,9 @@ const purchasemodule = {
     },
     getntickets: (state) => {
       return state.ntickets
+    },
+    gettotal: (state) => {
+      return state.total
     },
     get_ticketvalidation: (state) => {
       return state.ticketvalidation
@@ -63,6 +71,9 @@ const purchasemodule = {
     }
   },
   actions: {
+    setuuid: ({commit, state}, id) => {
+      state.uuid = id
+    },
     setdate: ({commit, state}, value) => {
       state.date = value
     },
@@ -71,6 +82,9 @@ const purchasemodule = {
     },
     setntickets: ({commit, state}, number) => {
       state.ntickets = number
+    },
+    settotal: ({commit, state}, tot) => {
+      state.total = tot
     },
     set_ticketvalidation: ({commit, state}, bool) => {
       state.ticketvalidation = bool

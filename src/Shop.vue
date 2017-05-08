@@ -32,7 +32,7 @@
         <v-btn primary v-else @click.native="purchasestep = 3" disabled>Continue</v-btn>
       </v-stepper-content>
       <v-stepper-content step="3">
-        <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
+        <BookingSummary></BookingSummary>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
         <v-btn primary @click.native="">Buy</v-btn>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import BookingSummary from './components/BookingSummary'
 import Calendar from './components/Calendar'
 import Datepicker from 'vuejs-datepicker'
 import Session from './components/Session'
@@ -50,6 +51,7 @@ import Tickets from './components/Tickets'
 export default {
   name: 'shop',
   components: {
+    BookingSummary,
     Calendar,
     Datepicker,
     Session,
@@ -60,6 +62,10 @@ export default {
       cancelpurchase: false,
       purchasestep: 0
     }
+  },
+  created () {
+    const uuidV4 = require('uuid/v4')
+    this.$store.dispatch('purchase/setuuid', uuidV4())
   }
 }
 </script>
