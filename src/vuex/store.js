@@ -38,7 +38,9 @@ const purchasemodule = {
     date: '',
     session: '',
     ticketvalidation: false,
-    ntickets: 0
+    ntickets: 0,
+    nguidebooks: 0,
+    guidebooks: []
   },
   getters: {
     getdate: (state) => {
@@ -52,6 +54,12 @@ const purchasemodule = {
     },
     get_ticketvalidation: (state) => {
       return state.ticketvalidation
+    },
+    get_nguidebooks: (state) => {
+      return state.nguidebooks
+    },
+    get_guidebooks: (state) => {
+      return state.guidebooks
     }
   },
   actions: {
@@ -66,6 +74,12 @@ const purchasemodule = {
     },
     set_ticketvalidation: ({commit, state}, bool) => {
       state.ticketvalidation = bool
+    },
+    set_nguidebooks: ({commit, state}, number) => {
+      state.nguidebooks = number
+    },
+    set_guidebooks: ({commit, state}, languages) => {
+      state.guidebooks = languages
     }
   }
 }

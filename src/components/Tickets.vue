@@ -28,7 +28,9 @@
             <v-subheader v-text="'Adult tickets'" />
           </v-col>
           <v-col xs3>
-            <v-select label="Select" v-bind:items="items" v-model="adult" v-bind:rules="[() => ((adult && adult > 0) || concession > 0) || 'Please select at least one ticket']"  max-height="200" light item-value="number" single-line auto />
+            <v-select label="Select" v-bind:items="items" v-model="adult"
+            v-bind:rules="[() => ((adult && adult > 0) || concession > 0) || 'Please select at least one ticket']"
+            max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
             <p>{{ adultprice }}</p>
@@ -50,10 +52,38 @@
             <v-subheader v-text="'Concession'" />
           </v-col>
           <v-col xs3>
-            <v-select label="Select" v-bind:items="items" v-model="concession" v-bind:rules="[() => ((concession && concession > 0) || adult > 0) || 'Please select at least one ticket']" max-height="200" light item-value="number" single-line auto />
+            <v-select label="Select" v-bind:items="items" v-model="concession"
+            v-bind:rules="[() => ((concession && concession > 0) || adult > 0) || 'Please select at least one ticket']"
+            max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
             <p>{{ concessionprice }}</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col xs3>
+            <v-subheader v-text="'Guide books'" />
+          </v-col>
+          <v-col xs3>
+            <v-select
+              v-model="guides"
+              label="Select guidebook languages"
+              :items="guidebooks"
+              item-text="lang"
+              item-value="id"
+              v-bind:rules="[() => (guides.length !== 0 || nguidebooks === 0) || 'Please select at least one guide']"
+              multiple
+              chips
+            ></v-select>
+          </v-col>
+          <v-col xs3>
+            {{guides.length}} and {{nguidebooks}}
+            <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
+              v-bind:rules="[() => (guides.length === 0 || nguidebooks !== 0) || 'Please select at least one guide']"
+              max-height="200" light item-value="number" single-line auto />
+          </v-col>
+          <v-col xs3 class="text-md-center">
+            <p>{{ guideprice }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -78,6 +108,16 @@ export default {
       adult: 0,
       children: 0,
       concession: 0,
+      nguidebooks: 0,
+      guides: [],
+      guidebooks: [
+        {id: 1, lang: 'English'},
+        {id: 2, lang: 'French'},
+        {id: 3, lang: 'Italian'},
+        {id: 4, lang: 'Mandarin'},
+        {id: 5, lang: 'Korean'},
+        {id: 6, lang: 'Japanese'}
+      ],
       items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
   },
@@ -89,18 +129,22 @@ export default {
       return this.children * 5
     },
     concessionprice () {
-      return this.concession * 5
+      return this.concession * 7
+    },
+    guideprice () {
+      return this.nguidebooks * 3
     },
     total () {
-      return this.adultprice + this.childprice + this.concessionprice
+      return this.adultprice + this.childprice + this.concessionprice + this.guideprice
     },
     ntickets () {
       return this.adult + this.children + this.concession
     }
   },
   watch: {
-    ntickets () {
+    total () {
       this.$store.dispatch('purchase/setntickets', this.ntickets)
+      this.$store.dispatch('purchase/set_nguidebooks', this.nguidebooks)
       this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
     }
   },
