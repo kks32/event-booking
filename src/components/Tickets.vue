@@ -73,14 +73,14 @@
               :items="guidebooks"
               item-text="lang"
               item-value="id"
-              v-bind:rules="[() => (guides.length !== 0 || nguidebooks === 0) || 'Please select at least one guide']"
+              v-bind:rules="[() => ((guides.length !== 0 || nguidebooks === 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               multiple
               chips
             ></v-select>
           </v-col>
           <v-col xs3>
             <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
-              v-bind:rules="[() => (guides.length === 0 || nguidebooks !== 0) || 'Please select at least one guide']"
+              v-bind:rules="[() => ((guides.length === 0 || nguidebooks !== 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
@@ -114,10 +114,11 @@ export default {
       guidebooks: [
         {id: 1, lang: 'English'},
         {id: 2, lang: 'French'},
-        {id: 3, lang: 'Italian'},
-        {id: 4, lang: 'Mandarin'},
-        {id: 5, lang: 'Korean'},
-        {id: 6, lang: 'Japanese'}
+        {id: 3, lang: 'German'},
+        {id: 4, lang: 'Italian'},
+        {id: 5, lang: 'Japanese'},
+        {id: 6, lang: 'Mandarin'},
+        {id: 7, lang: 'Spanish'}
       ],
       items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
