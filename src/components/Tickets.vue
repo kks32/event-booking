@@ -38,7 +38,8 @@
         </v-row>
         <v-row>
           <v-col xs6>
-            <v-subheader v-text="'Children'" />
+            <v-subheader>Children <span title="Child ticket is for 12 – 17 years and there is no charge for children 11 and under."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
+            </v-subheader>
           </v-col>
           <v-col xs3>
             <v-select v-bind:items="items" v-model="children" label="Select" max-height="200" light single-line auto />
@@ -49,7 +50,8 @@
         </v-row>
         <v-row>
           <v-col xs6>
-            <v-subheader v-text="'Concession'" />
+            <v-subheader>Student <span title="The concession ticket is for students with a valid ID card."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
+            </v-subheader>
           </v-col>
           <v-col xs3>
             <v-select label="Select" v-bind:items="items" v-model="concession"
@@ -125,13 +127,13 @@ export default {
       return this.adult * 9
     },
     childprice () {
-      return this.children * 5
+      return this.children * 6
     },
     concessionprice () {
-      return this.concession * 7
+      return this.concession * 6
     },
     guideprice () {
-      return this.nguidebooks * 3
+      return this.nguidebooks * 3.50
     },
     total () {
       return this.adultprice + this.childprice + this.concessionprice + this.guideprice

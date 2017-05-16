@@ -2,7 +2,7 @@
   <div id="date">
   	<div class="example">
   		<h6>Check ticket sales date range</h6>
-  		<datepicker :disabled="disabled"></datepicker>
+  		<datepicker :disabled="disabled" :inline="true"></datepicker>
   		<code>&lt;datepicker :disabled="disabled"&gt;&lt;/datepicker&gt;</code>
   		<div class="settings">
   			<h5>Settings</h5>
@@ -14,6 +14,10 @@
   				<label>End date:</label>
   				<datepicker v-on:selected="disableFrom"></datepicker>
   			</div>
+        <div class="form-group">
+          <label>Disable date:</label>
+          <datepicker v-on:selected="disableDate"></datepicker>
+        </div>
   			<pre>selected: {{ disabled }}</pre>
   		</div>
   	</div>
@@ -64,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: 'Helvetica Neue Light', Helvetica, sans-serif;
   padding: 0em 1em 1em;
@@ -119,4 +123,4 @@ h4 {
   font-size: 79%;
   display: block;
 }
-</style>
+</style scoped>

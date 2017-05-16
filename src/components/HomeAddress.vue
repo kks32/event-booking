@@ -1,5 +1,5 @@
 <template>
-  <div id="homeaddress">
+  <div id="demo">
       <p><i>myInstanceAddress</i> Property</p>
       <pre>{{ myInstanceAddress | json }}</pre>
       <input id="addressInput" type="text" />
@@ -9,7 +9,7 @@
 <script>
 import googleAutocomplete from '../googleAutocomplete'
 export default {
-  name: 'HomeAddress',
+  name: 'demo',
   data () {
     return {
       myInstanceAddress: {
