@@ -83,6 +83,18 @@
           <v-radio label="No" primary v-model="giftaid" value="false" light />
         </v-col>
       </v-row>
+      <v-row v-if="giftaid==='true'">
+        <v-col xs6>
+          <v-subheader v-text="'Subscribe'" />
+        </v-col>
+        <v-col xs6>
+          <v-radio class="pb-4" label="We would like to than you for your support and keep you
+          informed of news, events and opportunities at King's College. Please tick
+          if you wish us to use your aress and email for this purpose." primary v-model="subscribe" value="true" light />
+          <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
+          list of donors." primary v-model="subscribe" value="false" light />
+        </v-col>
+      </v-row>
     </v-container>
   </v-card-text>
 </v-card>
@@ -97,7 +109,8 @@ export default {
     return {
       name: '',
       email: '',
-      giftaid: 'true'
+      giftaid: 'true',
+      subscribe: 'true'
     }
   }
 }
