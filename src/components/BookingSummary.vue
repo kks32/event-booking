@@ -10,6 +10,9 @@
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
         <v-row>
+          <qr-code :text=qruuid></qr-code>
+        </v-row>
+        <v-row>
           <v-col xs6>
             <v-subheader v-text="'Booking reference'"/>
           </v-col>
@@ -110,7 +113,13 @@ export default {
       name: '',
       email: '',
       giftaid: 'true',
-      subscribe: 'true'
+      subscribe: 'true',
+      uuid: ''
+    }
+  },
+  computed: {
+    qruuid () {
+      return this.$store.getters['purchase/getuuid']
     }
   }
 }
