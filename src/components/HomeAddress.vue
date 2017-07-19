@@ -9,7 +9,6 @@
 <script>
 import googleAutocomplete from '../googleAutocomplete'
 export default {
-  name: 'demo',
   data () {
     return {
       myInstanceAddress: {
@@ -23,6 +22,9 @@ export default {
       url: null
     }
   },
+  mounted: {
+      // get input element where user will type/search addresses
+  },
   methods: {
     updateAddress () {
       // assign required values to my instance property
@@ -34,5 +36,6 @@ export default {
     }
   },
   mixins: [googleAutocomplete]
+
 }
 </script>
