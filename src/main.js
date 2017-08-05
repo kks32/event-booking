@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
+import VueQRCodeComponent from 'vue-qrcode-component'
 
 import Admin from './Admin'
 import App from './App'
@@ -16,6 +17,7 @@ require('./stylus/main.styl')
 Vue.use(Vuetify)
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.component('qr-code', VueQRCodeComponent)
 
 const routes = [
   {

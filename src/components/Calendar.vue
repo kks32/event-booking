@@ -58,11 +58,11 @@ export default {
       },
       limit: [{
         type: 'weekday',
-        available: [1, 2, 3, 4, 5]
+        available: [1, 2, 3, 4, 5, 6]
       },
       {
         type: 'fromto',
-        from: '2017-07-19',
+        from: '2017-07-30',
         to: '2017-09-30'
       }]
     }

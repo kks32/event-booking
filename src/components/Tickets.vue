@@ -38,7 +38,8 @@
         </v-row>
         <v-row>
           <v-col xs6>
-            <v-subheader v-text="'Children'" />
+            <v-subheader>Children <span title="Child ticket is for 12 – 17 years and there is no charge for children 11 and under."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
+            </v-subheader>
           </v-col>
           <v-col xs3>
             <v-select v-bind:items="items" v-model="children" label="Select" max-height="200" light single-line auto />
@@ -49,7 +50,8 @@
         </v-row>
         <v-row>
           <v-col xs6>
-            <v-subheader v-text="'Concession'" />
+            <v-subheader>Student <span title="The concession ticket is for students with a valid ID card."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
+            </v-subheader>
           </v-col>
           <v-col xs3>
             <v-select label="Select" v-bind:items="items" v-model="concession"
@@ -71,14 +73,14 @@
               :items="guidebooks"
               item-text="lang"
               item-value="id"
-              v-bind:rules="[() => (guides.length !== 0 || nguidebooks === 0) || 'Please select at least one guide']"
+              v-bind:rules="[() => ((guides.length !== 0 || nguidebooks === 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               multiple
               chips
             ></v-select>
           </v-col>
           <v-col xs3>
             <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
-              v-bind:rules="[() => (guides.length === 0 || nguidebooks !== 0) || 'Please select at least one guide']"
+              v-bind:rules="[() => ((guides.length === 0 || nguidebooks !== 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
@@ -112,10 +114,11 @@ export default {
       guidebooks: [
         {id: 1, lang: 'English'},
         {id: 2, lang: 'French'},
-        {id: 3, lang: 'Italian'},
-        {id: 4, lang: 'Mandarin'},
-        {id: 5, lang: 'Korean'},
-        {id: 6, lang: 'Japanese'}
+        {id: 3, lang: 'German'},
+        {id: 4, lang: 'Italian'},
+        {id: 5, lang: 'Japanese'},
+        {id: 6, lang: 'Mandarin'},
+        {id: 7, lang: 'Spanish'}
       ],
       items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
@@ -125,13 +128,13 @@ export default {
       return this.adult * 9
     },
     childprice () {
-      return this.children * 5
+      return this.children * 6
     },
     concessionprice () {
-      return this.concession * 7
+      return this.concession * 6
     },
     guideprice () {
-      return this.nguidebooks * 3
+      return this.nguidebooks * 3.50
     },
     total () {
       return this.adultprice + this.childprice + this.concessionprice + this.guideprice

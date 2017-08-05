@@ -18,6 +18,7 @@
         <v-stepper-step step="3">Review and pay</v-stepper-step>
       </v-stepper-header>
       <v-stepper-content step="1">
+        <p>Your ticket price includes a visit to the Chapel where you will see an exhibition of the history of the College, the world's largest fan vaulted ceiling and the Adoration of the Magi by Rubens. You will also have access to the College grounds (when open) including the Xu Zhimo stone. Please note all other buildings are private.</p>
         <Calendar></Calendar>
         <Session v-if="this.$store.getters['purchase/getdate'] != ''"></Session>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-2"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
