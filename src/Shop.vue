@@ -34,7 +34,6 @@
       </v-stepper-content>
       <v-stepper-content step="3">
         <BookingSummary></BookingSummary>
-        <HomeAddress></HomeAddress>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
         <v-btn primary @click.native="">Buy</v-btn>
@@ -47,7 +46,6 @@
 import BookingSummary from './components/BookingSummary'
 import Calendar from './components/Calendar'
 import Datepicker from 'vuejs-datepicker'
-import HomeAddress from './components/HomeAddress'
 import Session from './components/Session'
 import Tickets from './components/Tickets'
 
@@ -57,7 +55,6 @@ export default {
     BookingSummary,
     Calendar,
     Datepicker,
-    HomeAddress,
     Session,
     Tickets
   },
