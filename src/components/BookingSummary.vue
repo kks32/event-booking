@@ -33,7 +33,7 @@
             <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets and  {{this.$store.getters['purchase/get_nguidebooks']}} guides is:</v-subheader>
           </v-col>
           <v-col xs6>
-            <v-subheader> £{{this.$store.getters['purchase/gettotal']}}</v-subheader>
+            <v-subheader> £{{(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>
           </v-col>
         </v-row>
 

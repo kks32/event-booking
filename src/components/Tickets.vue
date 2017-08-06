@@ -33,7 +33,7 @@
             max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
-            <p>{{ adultprice }}</p>
+            <p>{{ (adultprice).toFixed(2) }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -45,7 +45,7 @@
             <v-select v-bind:items="items" v-model="children" label="Select" max-height="200" light single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
-            <p>{{ childprice }}</p>
+            <p>{{ (childprice).toFixed(2) }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -59,7 +59,7 @@
             max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
-            <p>{{ concessionprice }}</p>
+            <p>{{ (concessionprice).toFixed(2) }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -84,7 +84,7 @@
               max-height="200" light item-value="number" single-line auto />
           </v-col>
           <v-col xs3 class="text-md-center">
-            <p>{{ guideprice }}</p>
+            <p>{{ (guideprice).toFixed(2) }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -137,7 +137,7 @@ export default {
       return this.nguidebooks * 3.50
     },
     total () {
-      return this.adultprice + this.childprice + this.concessionprice + this.guideprice
+      return (this.adultprice + this.childprice + this.concessionprice + this.guideprice).toFixed(2)
     },
     ntickets () {
       return this.adult + this.children + this.concession
