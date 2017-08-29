@@ -2,6 +2,8 @@
 
 > Online event booking system
 
+[![dependencies Status](https://david-dm.org/kks32/event-booking/status.svg)](https://david-dm.org/kks32/event-booking)
+
 ## Build Setup
 
 ``` bash
