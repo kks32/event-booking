@@ -2,7 +2,7 @@
 
 > Online event booking system
 
-[![dependencies Status](https://david-dm.org/kks32/event-booking/status.svg)](https://david-dm.org/kks32/event-booking)
+[![dependencies Status](https://david-dm.org/kings-cam/ticketing-ui/status.svg)](https://david-dm.org/kings-cam/ticketing-ui)
 
 ## Build Setup
 
