@@ -1,16 +1,18 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col xs12>
+    <v-layout row wrap>
+      <v-flex>
         <v-subheader>Select session: {{ this.$store.getters['purchase/getsession'] || 'Not selected' }}</v-subheader>
         <v-card class="grey lighten-4 elevation-1">
           <v-card-text>
-            <v-radio label="Morning (9:30 - 12:00)" primary v-model="session" value="Morning" light />
-            <v-radio label="Afternoon (12:00 - 15:30)" primary v-model="session" value="Afternoon" light />
+            <v-radio-group v-model="session" :mandatory="false">
+              <v-radio label="Morning (9:30 - 12:00)" value="Morning"/>
+              <v-radio label="Afternoon (12:00 - 15:30)" value="Afternoon"/>
+            </v-radio-group>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
