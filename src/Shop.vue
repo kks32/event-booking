@@ -45,7 +45,6 @@
 <script>
 import BookingSummary from './components/BookingSummary'
 import Calendar from './components/Calendar'
-import Datepicker from 'vuejs-datepicker'
 import Session from './components/Session'
 import Tickets from './components/Tickets'
 
@@ -54,7 +53,6 @@ export default {
   components: {
     BookingSummary,
     Calendar,
-    Datepicker,
     Session,
     Tickets
   },
