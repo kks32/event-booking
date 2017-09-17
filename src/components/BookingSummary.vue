@@ -9,34 +9,33 @@
     </v-card-row>
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
-        <v-row>
+        <v-layout row wrap>
           <qr-code :text=qruuid></qr-code>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader v-text="'Booking reference'"/>
-          </v-col>
-          <v-col xs6>
+          </v-flex>
+          <v-flex xs6>
             <v-subheader>{{this.$store.getters['purchase/getuuid']}}</v-subheader>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader v-text="'Booking date and sessions'"/>
-          </v-col>
-          <v-col xs6>
+          </v-flex>
+          <v-flex xs6>
             <v-subheader>{{this.$store.getters['purchase/getdate']}} {{this.$store.getters['purchase/getsession']}}</v-subheader>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets and  {{this.$store.getters['purchase/get_nguidebooks']}} guides is:</v-subheader>
-          </v-col>
-          <v-col xs6>
+          </v-flex>
+          <v-flex xs6>
             <v-subheader> £{{(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>
-          </v-col>
-        </v-row>
-
+          </v-flex>
+        </v-layout>
       </v-container>
     </v-card-text>
   </v-card>
@@ -48,11 +47,11 @@
   </v-card-row>
   <v-card-text class="grey lighten-4 elevation-1">
     <v-container fluid>
-      <v-row>
-        <v-col xs6>
+      <v-layout row wrap>
+        <v-flex xs6>
           <v-subheader v-text="'Full name'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-text-field
             label="Full name"
             counter
@@ -61,13 +60,13 @@
             max="255"
             required
           />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col xs6>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs6>
           <v-subheader v-text="'Email address to subscribe to mailing list'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-text-field
             label="someone@anonymous.com"
             counter
@@ -75,56 +74,60 @@
             min="5"
             max="255"
           />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col xs6>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs6>
           <v-subheader v-text="'Gift aid'" />
-        </v-col>
-        <v-col xs6>
-          <v-radio label="Yes, I pay taxes in the UK. Gift aid this purchase" primary v-model="giftaid" value="true" light />
-          <v-radio label="No" primary v-model="giftaid" value="false" light />
-        </v-col>
-      </v-row>
-      <v-row v-if="giftaid==='true'">
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
+          <v-radio-group v-model="giftaid">
+            <v-radio label="Yes, I pay taxes in the UK. Gift aid this purchase" primary v-model="giftaid" value="true" light color="purple darken-4" />
+            <v-radio label="No" value="false" light color="purple darken-4"/>
+          </v-radio-group>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap v-if="giftaid==='true'">
+        <v-flex xs6>
           <v-subheader v-text="'Subscribe'" />
-        </v-col>
-        <v-col xs6>
-          <v-radio class="pb-4" label="We would like to thank you for your support and keep you
-          informed of news, events and opportunities at King's College. Please tick
-          if you wish us to use your aress and email for this purpose." primary v-model="subscribe" value="true" light />
-          <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
-          list of donors." primary v-model="subscribe" value="false" light />
-        </v-col>
-      </v-row>
-      <v-row v-if="giftaid==='true'">
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
+          <v-radio-group v-model="subscribe">
+            <v-radio class="pb-4" label="We would like to thank you for your support and keep you
+            informed of news, events and opportunities at King's College. Please tick
+            if you wish us to use your aress and email for this purpose." value="true" light color="purple darken-4"/>
+            <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
+            list of donors." value="false" light color="purple darken-4"/>
+        </v-radio-group>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap v-if="giftaid==='true'">
+        <v-flex xs6>
           <v-subheader v-text="'Address'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-text-field label="address" counter v-model="address" min="5" max="255"/>
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-subheader v-text="'city'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-text-field label="city" counter v-model="city" min="5" max="255"/>
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-subheader v-text="'postcode'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-text-field label="postcode" counter v-model="postcode" min="5" max="10"/>
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-subheader v-text="'country'" />
-        </v-col>
-        <v-col xs6>
+        </v-flex>
+        <v-flex xs6>
           <v-select label="Select a country" v-bind:items="countries" v-model="country"
             max-height="200" light item-value="number" single-line auto />
-        </v-col>
-      </v-row>
+        </v-flex>
+      </v-layout>
     </v-container>
   </v-card-text>
 </v-card>
@@ -154,7 +157,7 @@ export default {
         'Albania',
         'Algeria',
         'American Samoa',
-        'AndorrA',
+        'Andorra',
         'Angola',
         'Anguilla',
         'Antarctica',

@@ -5,7 +5,7 @@
         <v-subheader>Select session: {{ this.$store.getters['purchase/getsession'] || 'Not selected' }}</v-subheader>
         <v-card class="grey lighten-4 elevation-1">
           <v-card-text>
-            <v-radio-group v-model="session" :mandatory="false">
+            <v-radio-group v-model="session">
               <v-radio label="Morning (9:30 - 12:00)" value="Morning" color="purple darken-4"/>
               <v-radio label="Afternoon (12:00 - 15:30)" value="Afternoon" color="purple darken-4"/>
             </v-radio-group>

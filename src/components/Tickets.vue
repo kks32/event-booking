@@ -12,61 +12,61 @@
     </v-card-row>
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
-        <v-row>
-          <v-col xs6 class="text-lg-left">
+        <v-layout row wrap>
+          <v-flex xs6 class="text-lg-left">
             <h6>Category</h6>
-          </v-col>
-          <v-col xs3 class="text-lg-middle">
+          </v-flex>
+          <v-flex xs3 class="text-lg-middle">
             <h6># of tickets</h6>
-          </v-col>
-          <v-col xs3 class="total text-lg-middle">
+          </v-flex>
+          <v-flex xs3 class="total text-lg-middle">
             <h6>Total (£)</h6>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader v-text="'Adult tickets'" />
-          </v-col>
-          <v-col xs3>
+          </v-flex>
+          <v-flex xs3>
             <v-select label="Select" v-bind:items="items" v-model="adult"
             v-bind:rules="[() => ((adult && adult > 0) || concession > 0) || 'Please select at least one ticket']"
             max-height="200" light item-value="number" single-line auto />
-          </v-col>
-          <v-col xs3 class="text-md-center">
+          </v-flex>
+          <v-flex xs3 class="text-md-center">
             <p>{{ (adultprice).toFixed(2) }}</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader>Children <span title="Child ticket is for 12 – 17 years and there is no charge for children 11 and under."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
             </v-subheader>
-          </v-col>
-          <v-col xs3>
+          </v-flex>
+          <v-flex xs3>
             <v-select v-bind:items="items" v-model="children" label="Select" max-height="200" light single-line auto />
-          </v-col>
-          <v-col xs3 class="text-md-center">
+          </v-flex>
+          <v-flex xs3 class="text-md-center">
             <p>{{ (childprice).toFixed(2) }}</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs6>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
             <v-subheader>Student <span title="The concession ticket is for students with a valid ID card."><v-icon class="pl-2 grey--text text--darken-2">info</v-icon></span>
             </v-subheader>
-          </v-col>
-          <v-col xs3>
+          </v-flex>
+          <v-flex xs3>
             <v-select label="Select" v-bind:items="items" v-model="concession"
             v-bind:rules="[() => ((concession && concession > 0) || adult > 0) || 'Please select at least one ticket']"
             max-height="200" light item-value="number" single-line auto />
-          </v-col>
-          <v-col xs3 class="text-md-center">
+          </v-flex>
+          <v-flex xs3 class="text-md-center">
             <p>{{ (concessionprice).toFixed(2) }}</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs3>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs3>
             <v-subheader v-text="'Guide books'" />
-          </v-col>
-          <v-col xs3>
+          </v-flex>
+          <v-flex xs3>
             <v-select
               v-model="guides"
               label="Select guidebook languages"
@@ -77,24 +77,24 @@
               multiple
               chips
             ></v-select>
-          </v-col>
-          <v-col xs3>
+          </v-flex>
+          <v-flex xs3>
             <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
               v-bind:rules="[() => ((guides.length === 0 || nguidebooks !== 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               max-height="200" light item-value="number" single-line auto />
-          </v-col>
-          <v-col xs3 class="text-md-center">
+          </v-flex>
+          <v-flex xs3 class="text-md-center">
             <p>{{ (guideprice).toFixed(2) }}</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col xs9 class="text-lg-right">
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs9 class="text-lg-right">
             <h6>Total</h6>
-          </v-col>
-          <v-col xs3 class="text-lg-center">
+          </v-flex>
+          <v-flex xs3 class="text-lg-center">
             <p><strong>£ {{ total }}</strong></p>
-          </v-col>
-        </v-row>
+          </v-flex>
+        </v-layout>
       </v-container>
     </v-card-text>
   </v-card>
