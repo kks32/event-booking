@@ -116,7 +116,17 @@
             <v-subheader v-text="'Address'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="address" counter v-model="address" min="5" max="255"/>
+            <!--<v-text-field label="address" counter v-model="address" min="5" max="255"/>-->
+            <vue-google-autocomplete
+              ref="address"
+              v-model="home"
+              id="map"
+              classname="form-control"
+              placeholder="Please type your address"
+              v-on:placechanged="getAddressData"
+            >
+            </vue-google-autocomplete>
+            {{this.home}}
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'city'" />
@@ -146,10 +156,13 @@
 </template>
 
 <script>
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
 export default {
   'name': 'Summary',
+  components: { VueGoogleAutocomplete },
   data () {
     return {
+      home: '',
       name: '',
       email: '',
       address: '',
@@ -409,6 +422,15 @@ export default {
   computed: {
     qruuid () {
       return this.$store.getters['purchase/getuuid']
+    }
+  },
+  methods: {
+    // When the location found
+    // @param {Object} addressData Data of the found location
+    // @param {Object} placeResultData PlaceResult object
+    getAddressData: (addressData, placeResultData) => {
+      console.log(addressData)
+      this.address = addressData
     }
   }
 }
