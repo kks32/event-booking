@@ -78,9 +78,23 @@
           </v-flex>
           <v-flex xs6>
             <v-radio-group v-model="giftaid">
-              <v-radio label="Yes, I pay taxes in the UK. Gift aid this purchase" primary v-model="giftaid" value="true" light color="purple darken-4" />
+              <v-radio label="Yes, I wish to Gift Aid my donation." primary value="true" light color="purple darken-4" />
+              <p>
+                I wish to Gift Aid my donation to King's College,
+                Cambridge, registered as a charity in the UK (1139422).
+                <br/>
+                I am a UK taxpayer and understand that if I pay less Income Tax
+                and/or Capital Gains Tax in the current tax year than the amount
+                of Gift Aid claimed on all my donations it is my responsibility to
+                pay any difference.
+                <br/>
+                I will notify you if I want to cancel this declaration, change my
+                name or home address, or no longer pay sufficient tax on my income
+                and/or capital gains.
+              </p>
               <v-radio label="No" value="false" light color="purple darken-4"/>
             </v-radio-group>
+
           </v-flex>
         </v-layout>
         <v-layout row wrap v-if="giftaid==='true'">
