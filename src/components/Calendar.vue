@@ -19,11 +19,21 @@
 export default {
   data () {
     return {
-      date: '2017-09-18',
+      date: '',
       allowedDates: (date) => {
         return (date.getDay() !== 0 && date.getDay() !== 6 && date > new Date())
       }
     }
+  },
+  mounted () {
+    const d = new Date()
+    let month = '' + (d.getMonth() + 1)
+    let day = '' + d.getDate()
+    const year = d.getFullYear()
+
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
+    this.date = [year, month, day].join('-')
   },
   methods: {
     setdate () {
