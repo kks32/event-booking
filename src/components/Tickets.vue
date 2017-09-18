@@ -4,12 +4,9 @@
     Number of tickets cannot be more than 10.
   </v-alert>
   <v-card class="grey lighten-4 elevation-1">
-    <v-card-row class="purple darken-4">
-      <v-card-title>
-        <span class="white--text">Tickets</span>
-        <v-spacer></v-spacer>
-      </v-card-title>
-    </v-card-row>
+    <v-card-title class="purple darken-4 white--text">
+      <h5>Tickets</h5>
+    </v-card-title>
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
         <v-layout row wrap>

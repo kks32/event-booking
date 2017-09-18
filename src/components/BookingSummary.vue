@@ -1,12 +1,9 @@
 <template>
 <div id="summary">
   <v-card class="grey lighten-4 elevation-1">
-    <v-card-row class="purple darken-4">
-      <v-card-title>
-        <span class="white--text">Booking summary</span>
-        <v-spacer></v-spacer>
-      </v-card-title>
-    </v-card-row>
+    <v-card-title class="purple darken-4 white--text">
+      <h5>Booking summary</h5>
+    </v-card-title>
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
         <v-layout row wrap>
@@ -33,103 +30,102 @@
             <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets and  {{this.$store.getters['purchase/get_nguidebooks']}} guides is:</v-subheader>
           </v-flex>
           <v-flex xs6>
-            <v-subheader> £{{(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>
+            <v-subheader> £{{parseFloat(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>
           </v-flex>
         </v-layout>
       </v-container>
     </v-card-text>
   </v-card>
-  <v-card-row class="purple darken-4">
-    <v-card-title>
-      <span class="white--text">Personal details</span>
+  <v-card class="grey lighten-4 elevation-1">
+    <v-card-title class="purple darken-4 white--text">
+      <h6>Personal details</h6>
       <v-spacer></v-spacer>
     </v-card-title>
-  </v-card-row>
-  <v-card-text class="grey lighten-4 elevation-1">
-    <v-container fluid>
-      <v-layout row wrap>
-        <v-flex xs6>
-          <v-subheader v-text="'Full name'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-text-field
-            label="Full name"
-            counter
-            v-model="name"
-            min="5"
-            max="255"
-            required
-          />
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex xs6>
-          <v-subheader v-text="'Email address to subscribe to mailing list'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-text-field
-            label="someone@anonymous.com"
-            counter
-            v-model="email"
-            min="5"
-            max="255"
-          />
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex xs6>
-          <v-subheader v-text="'Gift aid'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-radio-group v-model="giftaid">
-            <v-radio label="Yes, I pay taxes in the UK. Gift aid this purchase" primary v-model="giftaid" value="true" light color="purple darken-4" />
-            <v-radio label="No" value="false" light color="purple darken-4"/>
+    <v-card-text class="grey lighten-4 elevation-1">
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex xs6>
+            <v-subheader v-text="'Full name'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field
+              label="Full name"
+              counter
+              v-model="name"
+              min="5"
+              max="255"
+              required
+            />
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
+            <v-subheader v-text="'Email address to subscribe to mailing list'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field
+              label="someone@anonymous.com"
+              counter
+              v-model="email"
+              min="5"
+              max="255"
+            />
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs6>
+            <v-subheader v-text="'Gift aid'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-radio-group v-model="giftaid">
+              <v-radio label="Yes, I pay taxes in the UK. Gift aid this purchase" primary v-model="giftaid" value="true" light color="purple darken-4" />
+              <v-radio label="No" value="false" light color="purple darken-4"/>
+            </v-radio-group>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap v-if="giftaid==='true'">
+          <v-flex xs6>
+            <v-subheader v-text="'Subscribe'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-radio-group v-model="subscribe">
+              <v-radio class="pb-4" label="We would like to thank you for your support and keep you
+              informed of news, events and opportunities at King's College. Please tick
+              if you wish us to use your aress and email for this purpose." value="true" light color="purple darken-4"/>
+              <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
+              list of donors." value="false" light color="purple darken-4"/>
           </v-radio-group>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap v-if="giftaid==='true'">
-        <v-flex xs6>
-          <v-subheader v-text="'Subscribe'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-radio-group v-model="subscribe">
-            <v-radio class="pb-4" label="We would like to thank you for your support and keep you
-            informed of news, events and opportunities at King's College. Please tick
-            if you wish us to use your aress and email for this purpose." value="true" light color="purple darken-4"/>
-            <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
-            list of donors." value="false" light color="purple darken-4"/>
-        </v-radio-group>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap v-if="giftaid==='true'">
-        <v-flex xs6>
-          <v-subheader v-text="'Address'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-text-field label="address" counter v-model="address" min="5" max="255"/>
-        </v-flex>
-        <v-flex xs6>
-          <v-subheader v-text="'city'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-text-field label="city" counter v-model="city" min="5" max="255"/>
-        </v-flex>
-        <v-flex xs6>
-          <v-subheader v-text="'postcode'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-text-field label="postcode" counter v-model="postcode" min="5" max="10"/>
-        </v-flex>
-        <v-flex xs6>
-          <v-subheader v-text="'country'" />
-        </v-flex>
-        <v-flex xs6>
-          <v-select label="Select a country" v-bind:items="countries" v-model="country"
-            max-height="200" light item-value="number" single-line auto />
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-card-text>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap v-if="giftaid==='true'">
+          <v-flex xs6>
+            <v-subheader v-text="'Address'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field label="address" counter v-model="address" min="5" max="255"/>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'city'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field label="city" counter v-model="city" min="5" max="255"/>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'postcode'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field label="postcode" counter v-model="postcode" min="5" max="10"/>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'country'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-select label="Select a country" v-bind:items="countries" v-model="country"
+              max-height="200" light item-value="number" single-line auto />
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card-text>
 </v-card>
 
 </div>

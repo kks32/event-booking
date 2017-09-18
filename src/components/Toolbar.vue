@@ -4,7 +4,7 @@
   <v-spacer></v-spacer>
   <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
   <v-toolbar-items class="hidden-sm-and-down" v-for="(item,i) in items" :key="i">
-    <v-toolbar-item :href="item.link" :router="item.router">{{item.title}}</v-toolbar-item>
+    <v-btn class="purple darken-4 white--text" :href="item.link" :router="item.router">{{item.title}}</v-btn>
   </v-toolbar-items>
   </v-toolbar>
 </template>

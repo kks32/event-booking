@@ -19,10 +19,10 @@
 export default {
   data () {
     return {
+      date: '2017-09-18',
       allowedDates: (date) => {
         return (date.getDay() !== 0 && date.getDay() !== 6 && date > new Date())
-      },
-      date: ''
+      }
     }
   },
   methods: {

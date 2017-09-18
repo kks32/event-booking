@@ -4,12 +4,12 @@
       <Toolbar></Toolbar>
     </header>
     <main>
-      <v-content>
+      <v-layout row wrap>
         <v-container fluid>
         <h3>{{msg}}</h3>
           <router-view></router-view>
         </v-container>
-      </v-content>
+      </v-layout>
     </main>
     <Foot></Foot>
   </v-app>
