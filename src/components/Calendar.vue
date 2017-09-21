@@ -15,15 +15,23 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   data () {
     return {
       date: '',
-      allowedDates: (date) => {
-        return (date.getDay() !== 0 && date.getDay() !== 6 && date > new Date())
-      }
+      allowedDates: ['2017-09-21', '2017-09-22']
     }
+  },
+  created () {
+    axios.get(`http://localhost:4000/api/v1/dates/`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.allowedDates = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
   },
   mounted () {
     const d = new Date()
