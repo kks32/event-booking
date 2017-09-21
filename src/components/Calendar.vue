@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {HTTP} from '../http-common'
 export default {
   data () {
     return {
@@ -24,7 +24,7 @@ export default {
     }
   },
   created () {
-    axios.get(`http://localhost:4000/api/v1/dates/`)
+    HTTP.get(`dates/`)
     .then(response => {
       // JSON responses are automatically parsed.
       this.allowedDates = response.data
