@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       date: '',
-      allowedDates: ['2017-09-21', '2017-09-22']
+      allowedDates: []
     }
   },
   created () {
@@ -28,6 +28,7 @@ export default {
     .then(response => {
       // JSON responses are automatically parsed.
       this.allowedDates = response.data
+      this.date = this.allowedDates[0]
     })
     .catch(e => {
       this.errors.push(e)
