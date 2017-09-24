@@ -30,7 +30,6 @@ export default {
       this.allowedDates = response.data
       if (this.allowedDates.length > 0) {
         this.date = this.allowedDates[0]
-        console.log(this.allowedDates)
       } else {
         this.date = ''
       }
