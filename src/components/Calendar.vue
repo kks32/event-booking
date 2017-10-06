@@ -45,3 +45,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.application .theme--light.picker .picker__title {
+  background-color: #4a148c;
+}
+</style>
