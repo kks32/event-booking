@@ -116,7 +116,7 @@
             <v-subheader v-text="'Address'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="address" counter v-model="address" min="5" max="255"/>
+            <v-text-field label="address" counter v-model="address" min="5" max="255" :rules="[() => testaddress || 'Please enter a valid address']" />
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'city'" />
@@ -158,6 +158,7 @@ export default {
       country: '',
       giftaid: 'true',
       subscribe: 'true',
+      testaddress: 'false',
       uuid: '',
       countries: [
         'United Kingdom',
@@ -404,6 +405,14 @@ export default {
         'Zambia',
         'Zimbabwe'
       ]
+    }
+  },
+  watch: {
+    address () {
+      var postcode = this.address.replace(/\s/g, '')
+      var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i
+      this.testaddress = regex.test(postcode)
+      console.log(regex.test(postcode))
     }
   },
   computed: {
