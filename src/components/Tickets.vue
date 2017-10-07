@@ -1,5 +1,12 @@
 <template>
 <div id="tickets">
+  <v-snackbar
+    :timeout="10000"
+    :bottom="true"
+    v-model="nguideerror"
+  >     Guide books selection is invalid! Number of guidebooks doesn't match number of languages.
+        <v-btn flat class="pink--text">Close</v-btn>
+      </v-snackbar>
   <v-alert error v-bind:value="ntickets > 10 ? true : false">
     Number of tickets cannot be more than 10.
   </v-alert>
@@ -70,14 +77,12 @@
               :items="guidebooks"
               item-text="lang"
               item-value="id"
-              v-bind:rules="[() => ((guides.length !== 0 || nguidebooks === 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               multiple
               chips
             ></v-select>
           </v-flex>
           <v-flex xs3>
             <v-select label="Select total copies" v-bind:items="items" v-model="nguidebooks"
-              v-bind:rules="[() => ((guides.length === 0 || nguidebooks !== 0) && guides.length <= nguidebooks) || 'Please select at least one guide per language']"
               max-height="200" light item-value="number" single-line auto />
           </v-flex>
           <v-flex xs3 class="text-md-center">
@@ -107,6 +112,7 @@ export default {
       children: 0,
       concession: 0,
       nguidebooks: 0,
+      nguideerror: false,
       guides: [],
       guidebooks: [
         {id: 1, lang: 'English'},
@@ -141,6 +147,22 @@ export default {
     }
   },
   watch: {
+    guides () {
+      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
+        this.nguideerror = true
+      } else {
+        this.nguideerror = false
+      }
+      return this.nguideerror
+    },
+    nguidebooks () {
+      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
+        this.nguideerror = true
+      } else {
+        this.nguideerror = false
+      }
+      return this.nguideerror
+    },
     total () {
       this.$store.dispatch('purchase/setntickets', this.ntickets)
       this.$store.dispatch('purchase/set_nguidebooks', this.nguidebooks)
@@ -153,7 +175,8 @@ export default {
   },
   methods: {
     validate () {
-      return this.$store.getters['purchase/getntickets'] <= 10 && this.$store.getters['purchase/getntickets'] > 0 && (this.adult > 0 || this.concession > 0)
+      return this.$store.getters['purchase/getntickets'] <= 10 &&
+             this.$store.getters['purchase/getntickets'] > 0 && (this.adult > 0 || this.concession > 0) && !this.nguideerror
     }
   }
 }
