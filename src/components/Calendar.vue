@@ -10,6 +10,14 @@
           landscape></v-date-picker>
         <v-btn v-if="this.date!=''" class="primary white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
       </v-flex>
+      <v-flex xs12 class="hidden-sm-and-up">
+        <v-date-picker
+          class="mt-3"
+          v-model="date"
+          first-day-of-week=1
+          :allowed-dates="allowedDates"></v-date-picker>
+        <v-btn v-if="this.date!=''" class="primary white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
