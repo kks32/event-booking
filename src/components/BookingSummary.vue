@@ -69,6 +69,7 @@
               v-model="email"
               min="5"
               max="255"
+              :rules="[() => testemail || 'Please enter a valid email address']"
             />
           </v-flex>
         </v-layout>
@@ -159,6 +160,7 @@ export default {
       giftaid: 'true',
       subscribe: 'true',
       testpostcode: 'false',
+      testemail: 'false',
       uuid: '',
       countries: [
         'United Kingdom',
@@ -343,7 +345,7 @@ export default {
         'Reunion',
         'Romania',
         'Russian Federation',
-        'RWANDA',
+        'Rwanda',
         'Saint Helena',
         'Saint Kitts and Nevis',
         'Saint Lucia',
@@ -408,6 +410,10 @@ export default {
     }
   },
   watch: {
+    email () {
+      const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      this.testemail = regex.test(this.email)
+    },
     postcode () {
       if (this.country === 'United Kingdom') {
         const ukpostcode = this.postcode.replace(/\s/g, '')
