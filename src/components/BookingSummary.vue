@@ -116,7 +116,7 @@
             <v-subheader v-text="'Address'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="address" counter v-model="address" min="5" max="255" :rules="[() => testaddress || 'Please enter a valid address']" />
+            <v-text-field label="address" counter v-model="address" min="5" max="255"/>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'city'" />
@@ -128,7 +128,7 @@
             <v-subheader v-text="'postcode'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="postcode" counter v-model="postcode" min="5" max="10"/>
+            <v-text-field label="postcode" counter v-model="postcode" min="5" max="10" :rules="[() => testpostcode || 'Please enter a valid postcode']"/>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'country'" />
@@ -155,10 +155,10 @@ export default {
       address: '',
       city: '',
       postcode: '',
-      country: '',
+      country: 'United Kingdom',
       giftaid: 'true',
       subscribe: 'true',
-      testaddress: 'false',
+      testpostcode: 'false',
       uuid: '',
       countries: [
         'United Kingdom',
@@ -408,11 +408,14 @@ export default {
     }
   },
   watch: {
-    address () {
-      var postcode = this.address.replace(/\s/g, '')
-      var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i
-      this.testaddress = regex.test(postcode)
-      console.log(regex.test(postcode))
+    postcode () {
+      if (this.country === 'United Kingdom') {
+        const ukpostcode = this.postcode.replace(/\s/g, '')
+        const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i
+        this.testpostcode = regex.test(ukpostcode)
+      } else {
+        this.testpostcode = true
+      }
     }
   },
   computed: {
