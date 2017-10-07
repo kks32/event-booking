@@ -4,9 +4,8 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import VueQRCodeComponent from 'vue-qrcode-component'
 
-import Admin from './Admin'
 import App from './App'
-import Shop from './Shop'
+import router from './router'
 import store from './vuex/store'
 
 Vue.config.productionTip = false
@@ -18,23 +17,6 @@ Vue.use(Vuetify)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.component('qr-code', VueQRCodeComponent)
-
-const routes = [
-  {
-    path: '/',
-    component: Shop
-  },
-  {
-    path: '/admin',
-    component: Admin
-  }
-]
-
-const router = new VueRouter({
-  routes,
-  mode: 'history',
-  base: __dirname
-})
 
 /* eslint-disable no-new */
 new Vue({
