@@ -148,20 +148,10 @@ export default {
   },
   watch: {
     guides () {
-      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
-        this.nguideerror = true
-      } else {
-        this.nguideerror = false
-      }
-      return this.nguideerror
+      this.guidebookerror()
     },
     nguidebooks () {
-      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
-        this.nguideerror = true
-      } else {
-        this.nguideerror = false
-      }
-      return this.nguideerror
+      this.guidebookerror()
     },
     total () {
       this.$store.dispatch('purchase/setntickets', this.ntickets)
@@ -174,6 +164,14 @@ export default {
     }
   },
   methods: {
+    guidebookerror () {
+      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
+        this.nguideerror = true
+      } else {
+        this.nguideerror = false
+      }
+      this.validate()
+    },
     validate () {
       return this.$store.getters['purchase/getntickets'] <= 10 &&
              this.$store.getters['purchase/getntickets'] > 0 && (this.adult > 0 || this.concession > 0) && !this.nguideerror
