@@ -11,25 +11,25 @@
             <v-subheader v-text="'Exclude days'"/>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Sunday" v-model="excludedays[0]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Sunday" v-model="config.excludedays[0]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-            <v-checkbox label="Monday" v-model="excludedays[1]" color="red" hide-details></v-checkbox>
+            <v-checkbox label="Monday" v-model="config.excludedays[1]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Tuesday" v-model="excludedays[2]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Tuesday" v-model="config.excludedays[2]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Wednesday" v-model="excludedays[3]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Wednesday" v-model="config.excludedays[3]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Thursday" v-model="excludedays[4]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Thursday" v-model="config.excludedays[4]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Friday" v-model="excludedays[5]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Friday" v-model="config.excludedays[5]" color="red" hide-details></v-checkbox>
           </v-flex>
           <v-flex xs3>
-             <v-checkbox label="Saturday" v-model="excludedays[6]" color="red" hide-details></v-checkbox>
+             <v-checkbox label="Saturday" v-model="config.excludedays[6]" color="red" hide-details></v-checkbox>
           </v-flex>
 
           <v-flex xs12>
@@ -45,11 +45,11 @@
             <v-btn v-if="this.date!=null" color="red" class="white--text" @click.native="excludedate()">Exclude: {{date}}<v-icon right>delete</v-icon></v-btn>
             <v-btn v-if="this.date!=null" color="green" class="white--text" @click.native="includedate()">Remove exclude: {{date}}<v-icon right>check</v-icon></v-btn>
             <h5>Exclude dates: </h5>
-            <p>{{excludedates}}</p>
+            <p>{{config.excludedates}}</p>
           </v-flex>
           <v-flex xs12>
             <v-btn
-              @click.native=""
+              @click.native="test_config()"
               color="orange accent-4"
               dark
               >Preview
@@ -61,7 +61,7 @@
           </v-flex>
           <v-flex xs12>
             <v-date-picker
-              v-model="date"
+              v-model="previewdate"
               first-day-of-week=1
               :allowed-dates="allowedDates"
               dark landscape>
@@ -69,7 +69,7 @@
           </v-flex>
           <v-flex xs12>
             <v-btn
-              @click.native=""
+              @click.native="update_config()"
               color="green"
               dark
               >Save config
@@ -90,39 +90,67 @@ export default {
   data () {
     return {
       date: null,
+      previewdate: null,
       allowedDates: [],
-      // [S M T W T F S]
-      excludedays: [false, false, false, false, false, false, false],
-      excludedates: []
+      config: {
+        nmorningtickets: 500,
+        nafternoontickets: 500,
+        // [S M T W T F S]
+        excludedays: [false, false, false, false, false, false, false],
+        excludedates: []
+      }
     }
   },
   created () {
-    HTTP.get(`test/dates/`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.allowedDates = response.data
-      if (this.allowedDates.length > 0) {
-        this.date = this.allowedDates[0]
-      } else {
-        this.date = null
-      }
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+    this.get_testdates()
   },
   methods: {
+    test_config () {
+      HTTP.post('test/config/dates', this.config)
+        .then(response => {
+          this.get_testdates()
+        })
+        .catch(e => {
+          this.errorbar = true
+          this.errors.push(e)
+        })
+    },
+    get_testdates () {
+      HTTP.get(`test/dates`)
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.allowedDates = response.data
+        if (this.allowedDates.length > 0) {
+          this.date = this.allowedDates[0]
+        } else {
+          this.date = null
+        }
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    },
+    update_config () {
+      HTTP.post('config/dates', this.config)
+        .then(response => {
+          this.$router.push({path: '/'})
+        })
+        .catch(e => {
+          this.errorbar = true
+          this.errors.push(e)
+        })
+    },
     excludedate () {
       // Push if element doesn't exist
-      if (this.excludedates.indexOf(this.date) === -1) {
-        this.excludedates.push(this.date)
+      if (this.config.excludedates.indexOf(this.date) === -1) {
+        this.config.excludedates.push(this.date)
       }
-      console.log(this.excludedates)
+      console.log(this.config.excludedates)
     },
     includedate () {
       const incdate = this.date
-      this.excludedates = this.excludedates.filter(item => item !== incdate)
-      console.log(this.excludedates)
+      this.config.excludedates = this.config.excludedates.filter(item => item !== incdate)
+      console.log(this.config.excludedates)
     }
   }
 }

@@ -53,7 +53,7 @@ export default {
     this.$store.dispatch('purchase/setsession', this.session)
   },
   created () {
-    HTTP.get(`dates/`)
+    HTTP.get(`dates`)
     .then(response => {
       // JSON responses are automatically parsed.
       this.allowedDates = response.data
@@ -99,10 +99,3 @@ export default {
   }
 }
 </script>
-<!--
-<style>
-.application .theme--light.picker .picker__title {
-  background-color: #4a148c;
-}
-</style>
--->
