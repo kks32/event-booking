@@ -18,13 +18,13 @@
             <v-subheader v-text="'Tickets per session'"/>
           </v-flex>
           <v-flex xs9>
-             <v-slider label="Morning session" v-bind:max="2000" v-model="config.nmorningtickets"></v-slider>
+             <v-slider label="Morning session" v-bind:max="2000" v-model="config.nmorningtickets" thumb-label step="5" snap></v-slider>
            </v-flex>
            <v-flex xs3>
              <v-text-field v-model="config.nmorningtickets" type="number"></v-text-field>
            </v-flex>
            <v-flex xs9>
-              <v-slider label="Afternoon session" v-bind:max="2000" v-model="config.nafternoontickets"></v-slider>
+              <v-slider label="Afternoon session" v-bind:max="2000" v-model="config.nafternoontickets" thumb-label step="5" snap></v-slider>
             </v-flex>
             <v-flex xs3>
               <v-text-field v-model="config.nafternoontickets" type="number"></v-text-field>
