@@ -177,6 +177,8 @@ export default {
     }
   },
   methods: {
+    // Throws an error if the number of guidebooks doesn't match number of
+    // languages chosen
     guidebookerror () {
       if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
         this.nguideerror = true
@@ -189,8 +191,11 @@ export default {
       return (// Set Maximum of 10 tickets for sale and is more than 0
               this.$store.getters['purchase/getntickets'] <= 10 &&
               this.$store.getters['purchase/getntickets'] > 0 &&
+              // Check if a student or an adult ticket is found
               (this.adult > 0 || this.concession > 0) &&
+              // Check if the guidebooks and their numbers match
               !this.nguideerror &&
+              // Check if ntickets is within the maximum number of tickets available for session
               this.$store.getters['purchase/getntickets'] <= this.$store.getters['purchase/getmaxtickets'])
     }
   }
