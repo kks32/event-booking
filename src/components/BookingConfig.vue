@@ -129,7 +129,7 @@ export default {
         nmorningtickets: 500,
         nafternoontickets: 500,
         // [S M T W T F S]
-        excludedays: [false, false, false, false, false, false, false],
+        excludedays: [true, false, false, false, false, false, false],
         excludedates: []
       }
     }

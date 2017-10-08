@@ -16,6 +16,7 @@ export default {
     return {
       title: 'King\'s College, Cambridge',
       items: [
+        {'title': 'config', 'link': '/config', 'router': false},
         {'title': 'shop', 'link': 'https://shop.kings.cam.ac.uk', 'router': false}
       ]
     }
