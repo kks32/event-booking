@@ -145,6 +145,15 @@
             <v-select label="Select a country" v-bind:items="countries" v-model="country"
               max-height="200" light item-value="number" single-line auto />
           </v-flex>
+          <v-flex xs12>
+            <v-btn
+              @click.native="createbooking()"
+              color="green"
+              dark
+              >Save booking
+              <v-icon right dark>cloud_upload</v-icon>
+            </v-btn>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-card-text>
@@ -175,8 +184,9 @@ export default {
       booking: {
         uuid: '',
         name: '',
-        date: null,
+        date: '',
         session: '',
+        total: 0,
         ntickets: 0,
         nadults: 0,
         nchild: 0,
@@ -188,16 +198,6 @@ export default {
   },
   created () {
     this.countries = this.$store.getters['countries/getcountries']
-
-    this.booking.uuid = this.$store.getters['purchase/getuuid']
-    this.booking.date = this.$store.getters['purchase/getdate']
-    this.booking.session = this.$store.getters['purchase/getsession']
-    this.booking.ntickets = this.$store.getters['purchase/getntickets']
-    this.booking.nadults = this.$store.getters['purchase/getnadults']
-    this.booking.nchild = this.$store.getters['purchase/getnchild']
-    this.booking.nconcession = this.$store.getters['purchase/getnconcession']
-    this.booking.nguides = this.$store.getters['purchase/get_nguidebooks']
-    this.booking.guidebooks = this.$store.getters['purchase/get_guidebooks']
   },
   watch: {
     name () {
@@ -225,8 +225,22 @@ export default {
         this.testpostcode = true
       }
     },
+    fetchbooking () {
+      this.booking.uuid = this.$store.getters['purchase/getuuid'].toString()
+      this.booking.date = this.$store.getters['purchase/getdate'].toString()
+      this.booking.session = this.$store.getters['purchase/getsession'].toString()
+      this.booking.total = Number(this.$store.getters['purchase/gettotal'])
+      this.booking.ntickets = Number(this.$store.getters['purchase/getntickets'])
+      this.booking.nadults = Number(this.$store.getters['purchase/getnadults'])
+      this.booking.nchild = Number(this.$store.getters['purchase/getnchild'])
+      this.booking.nconcession = Number(this.$store.getters['purchase/getnconcession'])
+      this.booking.nguides = Number(this.$store.getters['purchase/get_nguidebooks'])
+      this.booking.guidebooks = this.$store.getters['purchase/get_guidebooks']
+    },
     createbooking () {
-      HTTP.post('bookings/' + this.uuid, this.booking)
+      this.fetchbooking()
+      console.log('bookings/' + this.booking.uuid)
+      HTTP.post('bookings/' + this.booking.uuid, this.booking)
         .then(response => {
           this.message = true
         })
