@@ -1,5 +1,12 @@
 <template>
 <div id="config">
+  <v-snackbar
+    :timeout="5000"
+    :bottom="true"
+    v-model="message"
+  >     Update successful
+  <v-btn flat class="pink--text">Close</v-btn>
+  </v-snackbar>
   <v-card class="grey lighten-4 elevation-1">
     <v-card-title class="purple darken-4 white--text">
       <h5>Dates configuration</h5>
@@ -107,6 +114,7 @@ export default {
       date: null,
       previewdate: null,
       allowedDates: [],
+      message: false,
       config: {
         nmorningtickets: 500,
         nafternoontickets: 500,
@@ -148,6 +156,7 @@ export default {
     update_config () {
       HTTP.post('config/dates', this.config)
         .then(response => {
+          this.message = true
           this.$router.push({path: '/config'})
         })
         .catch(e => {
@@ -160,12 +169,10 @@ export default {
       if (this.config.excludedates.indexOf(this.date) === -1) {
         this.config.excludedates.push(this.date)
       }
-      console.log(this.config.excludedates)
     },
     includedate () {
       const incdate = this.date
       this.config.excludedates = this.config.excludedates.filter(item => item !== incdate)
-      console.log(this.config.excludedates)
     }
   }
 }
