@@ -43,7 +43,9 @@
           </v-flex>
           <v-flex xs6>
             <v-btn v-if="this.date!=null" color="red" class="white--text" @click.native="excludedate()">Exclude: {{date}}<v-icon right>delete</v-icon></v-btn>
-            <v-btn v-if="this.date!=null" color="green" class="white--text" @click.native="excludedate()">Include: {{date}}<v-icon right>check</v-icon></v-btn>
+            <v-btn v-if="this.date!=null" color="green" class="white--text" @click.native="includedate()">Remove exclude: {{date}}<v-icon right>check</v-icon></v-btn>
+            <h5>Exclude dates: </h5>
+            <p>{{excludedates}}</p>
           </v-flex>
           <v-flex xs12>
             <v-btn
@@ -111,7 +113,15 @@ export default {
   },
   methods: {
     excludedate () {
-      this.excludedates.push(this.date)
+      // Push if element doesn't exist
+      if (this.excludedates.indexOf(this.date) === -1) {
+        this.excludedates.push(this.date)
+      }
+      console.log(this.excludedates)
+    },
+    includedate () {
+      const incdate = this.date
+      this.excludedates = this.excludedates.filter(item => item !== incdate)
       console.log(this.excludedates)
     }
   }
