@@ -11,7 +11,7 @@
     :timeout="10000"
     :bottom="true"
     v-model="nticketerror"
-  >     Number of tickets is more than available. Only {{ntickets}} are available.
+  >     Number of tickets is more than available. Only {{this.$store.getters['purchase/getmaxtickets']}} are available.
         <v-btn flat class="pink--text">Close</v-btn>
   </v-snackbar>
   <v-alert error v-bind:value="ntickets > 10 ? true : false">
