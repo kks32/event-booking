@@ -40,6 +40,9 @@ const purchasemodule = {
     session: '',
     ticketvalidation: false,
     ntickets: 0,
+    nadults: 0,
+    nchild: 0,
+    nconcession: 0,
     maxtickets: 0,
     nguidebooks: 0,
     total: 0,
@@ -57,6 +60,15 @@ const purchasemodule = {
     },
     getntickets: (state) => {
       return state.ntickets
+    },
+    getnadults: (state) => {
+      return state.nadults
+    },
+    getnchild: (state) => {
+      return state.nchild
+    },
+    getnconcession: (state) => {
+      return state.nconcession
     },
     getmaxtickets: (state) => {
       return state.maxtickets
@@ -86,6 +98,15 @@ const purchasemodule = {
     },
     setntickets: ({commit, state}, number) => {
       state.ntickets = number
+    },
+    setnadults: ({commit, state}, number) => {
+      state.nadults = number
+    },
+    setnchild: ({commit, state}, number) => {
+      state.nchild = number
+    },
+    setnconcession: ({commit, state}, number) => {
+      state.nconcession = number
     },
     setmaxtickets: ({commit, state}, number) => {
       state.maxtickets = number

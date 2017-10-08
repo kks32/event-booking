@@ -1,5 +1,12 @@
 <template>
 <div id="summary">
+  <v-snackbar
+    :timeout="5000"
+    :bottom="true"
+    v-model="message"
+  > Update successful
+    <v-btn flat class="pink--text">Close</v-btn>
+  </v-snackbar>
   <v-card class="grey lighten-4 elevation-1">
     <v-card-title class="purple darken-4 white--text">
       <h5>Booking summary</h5>
@@ -147,6 +154,7 @@
 </template>
 
 <script>
+import {HTTP} from '../http-common'
 export default {
   'name': 'Summary',
   data () {
@@ -162,13 +170,40 @@ export default {
       testpostcode: 'false',
       testemail: 'false',
       uuid: '',
-      countries: []
+      countries: [],
+      message: false,
+      booking: {
+        uuid: '',
+        name: '',
+        date: null,
+        session: '',
+        ntickets: 0,
+        nadults: 0,
+        nchild: 0,
+        nconcession: 0,
+        nguides: 0,
+        guidebooks: []
+      }
     }
   },
   created () {
     this.countries = this.$store.getters['countries/getcountries']
+
+    this.booking.uuid = this.$store.getters['purchase/getuuid']
+    this.booking.date = this.$store.getters['purchase/getdate']
+    this.booking.session = this.$store.getters['purchase/getsession']
+    this.booking.ntickets = this.$store.getters['purchase/getntickets']
+    this.booking.nadults = this.$store.getters['purchase/getnadults']
+    this.booking.nchild = this.$store.getters['purchase/getnchild']
+    this.booking.nconcession = this.$store.getters['purchase/getnconcession']
+    this.booking.nguides = this.$store.getters['purchase/get_nguidebooks']
+    this.booking.guidebooks = this.$store.getters['purchase/get_guidebooks']
   },
   watch: {
+    name () {
+      this.booking.name = this.name
+      console.log(this.booking.name)
+    },
     email () {
       const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       this.testemail = regex.test(this.email)
@@ -189,6 +224,15 @@ export default {
       } else {
         this.testpostcode = true
       }
+    },
+    createbooking () {
+      HTTP.post('bookings/' + this.uuid, this.booking)
+        .then(response => {
+          this.message = true
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   },
   computed: {
