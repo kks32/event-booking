@@ -20,23 +20,22 @@
       <v-stepper-content step="1">
         <p>Your ticket price includes a visit to the Chapel where you will see an exhibition of the history of the College, the world's largest fan vaulted ceiling and the Adoration of the Magi by Rubens. You will also have access to the College grounds (when open) including the Xu Zhimo stone. Please note all other buildings are private.</p>
         <Calendar></Calendar>
-        <Session v-if="this.$store.getters['purchase/getdate'] != ''"></Session>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-2"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
-        <v-btn primary v-if="this.$store.getters['purchase/getdate'] != ''" @click.native="purchasestep = 2">Continue</v-btn>
-        <v-btn primary v-else @click.native="purchasestep = 2" disabled>Continue</v-btn>
+        <v-btn color="primary" v-if="this.$store.getters['purchase/getdate'] != ''" @click.native="purchasestep = 2">Continue</v-btn>
+        <v-btn color="primary" v-else @click.native="purchasestep = 2" disabled>Continue</v-btn>
       </v-stepper-content>
       <v-stepper-content step="2">
         <Tickets></Tickets>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 1" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
-        <v-btn primary v-if="this.$store.getters['purchase/get_ticketvalidation']" @click.native="purchasestep = 3">Continue</v-btn>
-        <v-btn primary v-else @click.native="purchasestep = 3" disabled>Continue</v-btn>
+        <v-btn color="primary" v-if="this.$store.getters['purchase/get_ticketvalidation']" @click.native="purchasestep = 3">Continue</v-btn>
+        <v-btn color="primary" v-else @click.native="purchasestep = 3" disabled>Continue</v-btn>
       </v-stepper-content>
       <v-stepper-content step="3">
         <BookingSummary></BookingSummary>
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
-        <v-btn primary @click.native="">Buy</v-btn>
+        <v-btn color="primary" @click.native="">Buy</v-btn>
       </v-stepper-content>
     </v-stepper>
   </div>
@@ -45,7 +44,6 @@
 <script>
 import BookingSummary from './components/BookingSummary'
 import Calendar from './components/Calendar'
-import Session from './components/Session'
 import Tickets from './components/Tickets'
 
 export default {
@@ -53,7 +51,6 @@ export default {
   components: {
     BookingSummary,
     Calendar,
-    Session,
     Tickets
   },
   data () {

@@ -7,8 +7,9 @@
           v-model="date"
           first-day-of-week=1
           :allowed-dates="allowedDates"
+          color="primary"
           landscape></v-date-picker>
-        <v-btn v-if="this.date!=''" class="primary white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
+        <v-btn v-if="this.date!=''" color="primary" class="white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
       </v-flex>
       <v-flex xs12 class="hidden-sm-and-up">
         <v-date-picker
@@ -16,7 +17,21 @@
           v-model="date"
           first-day-of-week=1
           :allowed-dates="allowedDates"></v-date-picker>
-        <v-btn v-if="this.date!=''" class="primary white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
+        <v-btn v-if="this.date!=''" color="primary" class="white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
+      </v-flex>
+    </v-layout>
+    <!-- Session -->
+    <v-layout row wrap v-if="this.$store.getters['purchase/getdate'] != ''">
+      <v-flex>
+        <v-subheader>Select session: {{ this.$store.getters['purchase/getsession'] || 'Not selected' }}</v-subheader>
+        <v-card class="grey lighten-4 elevation-1">
+          <v-card-text>
+            <v-radio-group v-model="session">
+              <v-radio label="Morning (9:30 - 12:00)" value="Morning" color="purple darken-4" v-if="sessions.nmorningtickets > 0"/>
+              <v-radio label="Afternoon (12:00 - 15:30)" value="Afternoon" color="purple darken-4" v-if="sessions.nafternoontickets > 0"/>
+            </v-radio-group>
+          </v-card-text>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -28,8 +43,16 @@ export default {
   data () {
     return {
       date: '',
-      allowedDates: []
+      allowedDates: [],
+      session: 'Morning',
+      sessions: {
+        nmorningtickets: 0,
+        nafternoontickets: 0
+      }
     }
+  },
+  mounted () {
+    this.$store.dispatch('purchase/setsession', this.session)
   },
   created () {
     HTTP.get(`dates/`)
@@ -48,14 +71,33 @@ export default {
   },
   methods: {
     setdate () {
+      this.getsessions()
       this.$store.dispatch('purchase/setdate', this.date)
+    },
+    getsessions () {
+      HTTP.get(`sessions/` + this.date)
+      .then(response => {
+        // Parse JSON response for the day
+        var session = response.data
+        this.sessions.nmorningtickets = session.nmorningtickets
+        this.sessions.nafternoontickets = session.nafternoontickets
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    }
+  },
+  watch: {
+    session () {
+      this.$store.dispatch('purchase/setsession', this.session)
     }
   }
 }
 </script>
-
+<!--
 <style>
 .application .theme--light.picker .picker__title {
   background-color: #4a148c;
 }
 </style>
+-->
