@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Booking from '@/Booking'
 import Config from '@/Config'
 import Shop from '@/Shop'
 
@@ -15,6 +16,10 @@ export default new Router({
     {
       path: '/config',
       component: Config
+    },
+    {
+      path: '/bookings',
+      component: Booking
     }
   ],
   mode: 'history',
