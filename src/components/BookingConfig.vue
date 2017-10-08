@@ -77,6 +77,7 @@
             <v-btn v-if="this.date!=null" color="green" class="white--text" @click.native="includedate()">Remove exclude: {{date}}<v-icon right>check</v-icon></v-btn>
             <h5>Exclude dates: </h5>
             <p>{{config.excludedates}}</p>
+            <v-btn color="red" class="white--text" @click.native="clearexcludedates()">Clear all exclude dates<v-icon right>delete</v-icon></v-btn>
           </v-flex>
           <v-flex xs12>
             <v-btn
@@ -150,6 +151,9 @@ export default {
     })
   },
   methods: {
+    clearexcludedates () {
+      this.config.excludedates = []
+    },
     test_config () {
       HTTP.post('test/config/dates', this.config)
         .then(response => {
