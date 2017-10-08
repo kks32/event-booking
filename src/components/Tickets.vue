@@ -111,6 +111,7 @@
 </template>
 
 <script>
+import {HTTP} from '../http-common'
 export default {
   'name': 'Tickets',
   data () {
@@ -119,6 +120,10 @@ export default {
       children: 0,
       concession: 0,
       nguidebooks: 0,
+      adultcost: 0,
+      childcost: 0,
+      concessioncost: 0,
+      guidecost: 0,
       nguideerror: false,
       nticketerror: false,
       guides: [],
@@ -134,18 +139,32 @@ export default {
       items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
   },
+  created () {
+    HTTP.get(`prices/`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      const prices = response.data
+      this.adultcost = prices.adultprice
+      this.childcost = prices.childprice
+      this.concessioncost = prices.concessionprice
+      this.guidecost = prices.guideprice
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
   computed: {
     adultprice () {
-      return this.adult * 9
+      return this.adult * this.adultcost
     },
     childprice () {
-      return this.children * 6
+      return this.children * this.childcost
     },
     concessionprice () {
-      return this.concession * 6
+      return this.concession * this.concessioncost
     },
     guideprice () {
-      return this.nguidebooks * 3.50
+      return this.nguidebooks * this.guidecost
     },
     total () {
       return (this.adultprice + this.childprice + this.concessionprice + this.guideprice).toFixed(2)
@@ -178,9 +197,11 @@ export default {
   },
   methods: {
     // Throws an error if the number of guidebooks doesn't match number of
-    // languages chosen
+    // selected guidebook languages
     guidebookerror () {
-      if ((this.guides.length > 0 || this.nguidebooks > 0) && this.guides.length > this.nguidebooks) {
+      if (((this.guides.length > 0 || this.nguidebooks > 0) &&
+           this.guides.length > this.nguidebooks) ||
+           (this.nguidebooks > 0 && this.guides.length === 0)) {
         this.nguideerror = true
       } else {
         this.nguideerror = false
