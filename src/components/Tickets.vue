@@ -6,7 +6,14 @@
     v-model="nguideerror"
   >     Guide books selection is invalid! Number of guidebooks doesn't match number of languages.
         <v-btn flat class="pink--text">Close</v-btn>
-      </v-snackbar>
+  </v-snackbar>
+  <v-snackbar
+    :timeout="10000"
+    :bottom="true"
+    v-model="nticketerror"
+  >     Number of tickets is more than available. Only {{ntickets}} are available.
+        <v-btn flat class="pink--text">Close</v-btn>
+  </v-snackbar>
   <v-alert error v-bind:value="ntickets > 10 ? true : false">
     Number of tickets cannot be more than 10.
   </v-alert>
@@ -113,6 +120,7 @@ export default {
       concession: 0,
       nguidebooks: 0,
       nguideerror: false,
+      nticketerror: false,
       guides: [],
       guidebooks: [
         {id: 1, lang: 'English'},
@@ -160,6 +168,11 @@ export default {
       this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
     },
     ntickets () {
+      if (this.ntickets > this.$store.getters['purchase/getmaxtickets']) {
+        this.nticketerror = true
+      } else {
+        this.nticketerror = false
+      }
       this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
     }
   },
@@ -173,8 +186,12 @@ export default {
       this.validate()
     },
     validate () {
-      return this.$store.getters['purchase/getntickets'] <= 10 &&
-             this.$store.getters['purchase/getntickets'] > 0 && (this.adult > 0 || this.concession > 0) && !this.nguideerror
+      return (// Set Maximum of 10 tickets for sale and is more than 0
+              this.$store.getters['purchase/getntickets'] <= 10 &&
+              this.$store.getters['purchase/getntickets'] > 0 &&
+              (this.adult > 0 || this.concession > 0) &&
+              !this.nguideerror &&
+              this.$store.getters['purchase/getntickets'] <= this.$store.getters['purchase/getmaxtickets'])
     }
   }
 }

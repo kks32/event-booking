@@ -40,6 +40,7 @@ const purchasemodule = {
     session: '',
     ticketvalidation: false,
     ntickets: 0,
+    maxtickets: 0,
     nguidebooks: 0,
     total: 0,
     guidebooks: []
@@ -56,6 +57,9 @@ const purchasemodule = {
     },
     getntickets: (state) => {
       return state.ntickets
+    },
+    getmaxtickets: (state) => {
+      return state.maxtickets
     },
     gettotal: (state) => {
       return state.total
@@ -82,6 +86,9 @@ const purchasemodule = {
     },
     setntickets: ({commit, state}, number) => {
       state.ntickets = number
+    },
+    setmaxtickets: ({commit, state}, number) => {
+      state.maxtickets = number
     },
     settotal: ({commit, state}, tot) => {
       state.total = tot

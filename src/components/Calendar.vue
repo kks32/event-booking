@@ -9,7 +9,6 @@
           :allowed-dates="allowedDates"
           color="primary"
           landscape></v-date-picker>
-        <v-btn v-if="this.date!=''" color="primary" class="white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
       </v-flex>
       <v-flex xs12 class="hidden-sm-and-up">
         <v-date-picker
@@ -44,7 +43,7 @@ export default {
     return {
       date: '',
       allowedDates: [],
-      session: 'Morning',
+      session: '',
       sessions: {
         nmorningtickets: 0,
         nafternoontickets: 0
@@ -70,10 +69,6 @@ export default {
     })
   },
   methods: {
-    setdate () {
-      this.getsessions()
-      this.$store.dispatch('purchase/setdate', this.date)
-    },
     getsessions () {
       HTTP.get(`sessions/` + this.date)
       .then(response => {
@@ -81,6 +76,7 @@ export default {
         var session = response.data
         this.sessions.nmorningtickets = session.nmorningtickets
         this.sessions.nafternoontickets = session.nafternoontickets
+        this.session = ''
       })
       .catch(e => {
         this.errors.push(e)
@@ -90,6 +86,16 @@ export default {
   watch: {
     session () {
       this.$store.dispatch('purchase/setsession', this.session)
+      if (this.session === 'Morning') {
+        this.$store.dispatch('purchase/setmaxtickets', this.sessions.nmorningtickets)
+      }
+      if (this.session === 'Afternoon') {
+        this.$store.dispatch('purchase/setmaxtickets', this.sessions.nafternoontickets)
+      }
+    },
+    date () {
+      this.$store.dispatch('purchase/setdate', this.date)
+      this.getsessions()
     }
   }
 }
