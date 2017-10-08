@@ -174,6 +174,14 @@ export default {
       this.testemail = regex.test(this.email)
     },
     postcode () {
+      this.evaluatepostcode()
+    },
+    countries () {
+      this.evaluatepostcode()
+    }
+  },
+  methods: {
+    evaluatepostcode () {
       if (this.country === 'United Kingdom') {
         const ukpostcode = this.postcode.replace(/\s/g, '')
         const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i
