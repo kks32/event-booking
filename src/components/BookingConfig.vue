@@ -15,6 +15,15 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-flex xs12>
+            <v-subheader v-text="'Tickets sales duration'"/>
+          </v-flex>
+          <v-flex xs9>
+             <v-slider label="Number of days tickets on sale" v-bind:max="365" v-model="config.ndays" thumb-label step="1" snap></v-slider>
+          </v-flex>
+          <v-flex xs3>
+            <v-text-field v-model="config.ndays" type="number"></v-text-field>
+          </v-flex>
+          <v-flex xs12>
             <v-subheader v-text="'Tickets per session'"/>
           </v-flex>
           <v-flex xs9>
@@ -116,6 +125,7 @@ export default {
       allowedDates: [],
       message: false,
       config: {
+        ndays: 90,
         nmorningtickets: 500,
         nafternoontickets: 500,
         // [S M T W T F S]
