@@ -16,7 +16,6 @@
           v-model="date"
           first-day-of-week=1
           :allowed-dates="allowedDates"></v-date-picker>
-        <v-btn v-if="this.date!=''" color="primary" class="white--text" @click.native="setdate()">Accept: {{date}}<v-icon right>check_circle</v-icon></v-btn>
       </v-flex>
     </v-layout>
     <!-- Session -->
