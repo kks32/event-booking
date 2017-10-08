@@ -8,6 +8,21 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-flex xs12>
+            <v-subheader v-text="'Tickets per session'"/>
+          </v-flex>
+          <v-flex xs9>
+             <v-slider label="Morning session" v-bind:max="2000" v-model="config.nmorningtickets"></v-slider>
+           </v-flex>
+           <v-flex xs3>
+             <v-text-field v-model="config.nmorningtickets" type="number"></v-text-field>
+           </v-flex>
+           <v-flex xs9>
+              <v-slider label="Afternoon session" v-bind:max="2000" v-model="config.nafternoontickets"></v-slider>
+            </v-flex>
+            <v-flex xs3>
+              <v-text-field v-model="config.nafternoontickets" type="number"></v-text-field>
+            </v-flex>
+          <v-flex xs12>
             <v-subheader v-text="'Exclude days'"/>
           </v-flex>
           <v-flex xs3>
@@ -133,7 +148,7 @@ export default {
     update_config () {
       HTTP.post('config/dates', this.config)
         .then(response => {
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/config'})
         })
         .catch(e => {
           this.errorbar = true
