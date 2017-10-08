@@ -40,7 +40,7 @@ import {HTTP} from '../http-common'
 export default {
   data () {
     return {
-      date: '',
+      date: null,
       allowedDates: [],
       session: '',
       sessions: {
@@ -60,7 +60,7 @@ export default {
       if (this.allowedDates.length > 0) {
         this.date = this.allowedDates[0]
       } else {
-        this.date = ''
+        this.date = null
       }
     })
     .catch(e => {

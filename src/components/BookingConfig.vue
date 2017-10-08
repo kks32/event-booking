@@ -61,6 +61,7 @@
             <v-date-picker
               v-model="date"
               first-day-of-week=1
+              :allowed-dates="allowedDates"
               dark landscape>
             </v-date-picker>
           </v-flex>
@@ -81,15 +82,32 @@
 </template>
 
 <script>
+import {HTTP} from '../http-common'
 export default {
   'name': 'BookingConfig',
   data () {
     return {
       date: null,
+      allowedDates: [],
       // [S M T W T F S]
       excludedays: [false, false, false, false, false, false, false],
       excludedates: []
     }
+  },
+  created () {
+    HTTP.get(`test/dates/`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.allowedDates = response.data
+      if (this.allowedDates.length > 0) {
+        this.date = this.allowedDates[0]
+      } else {
+        this.date = null
+      }
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
   },
   methods: {
     excludedate () {
