@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Admin from '@/Admin'
+import Config from '@/Config'
 import Shop from '@/Shop'
 
 Vue.use(Router)
@@ -13,8 +13,8 @@ export default new Router({
       component: Shop
     },
     {
-      path: '/admin',
-      component: Admin
+      path: '/config',
+      component: Config
     }
   ],
   mode: 'history',
