@@ -3,8 +3,8 @@
   <v-snackbar
     :timeout="5000"
     :bottom="true"
-    v-model="message"
-  > Update successful
+    v-model="notification"
+  > {{message}}
     <v-btn flat class="pink--text">Close</v-btn>
   </v-snackbar>
   <v-card class="grey lighten-4 elevation-1">
@@ -180,7 +180,8 @@ export default {
       testemail: 'false',
       uuid: '',
       countries: [],
-      message: false,
+      notification: false,
+      message: '',
       booking: {
         uuid: '',
         name: '',
@@ -242,7 +243,12 @@ export default {
       console.log('bookings/' + this.booking.uuid)
       HTTP.post('bookings/' + this.booking.uuid, this.booking)
         .then(response => {
-          this.message = true
+          this.notification = true
+          if (response.data === '') {
+            this.message = 'Success!'
+          } else {
+            this.message = response.data
+          }
         })
         .catch(e => {
           this.errors.push(e)
