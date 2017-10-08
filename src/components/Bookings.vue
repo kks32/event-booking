@@ -12,14 +12,14 @@
       <v-card>
         <v-list three-line>
           <template v-for="session in sessions">
-            <v-subheader class="bold grey lighten-1">{{session}} bookings</v-subheader>
+            <v-subheader class="bold grey lighten-1">{{date}} {{session}} bookings</v-subheader>
             <template v-for="booking in bookings" v-if="booking.session === session">
               <v-list-tile avatar v-bind:key="booking.name">
                 <v-avatar>
                   <img src="/static/media/kings.png" style="width:50px;height:50px;" alt="kings">
                 </v-avatar>
                 <v-list-tile-content>
-                  <v-list-tile-title v-html="booking.name"></v-list-tile-title>
+                  <v-list-tile-title v-html="booking.name + ' - ' + booking.uuid"></v-list-tile-title>
                   <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of tickets: ' + booking.ntickets"></v-list-tile-sub-title>
                   <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of guides: ' + booking.nguides"></v-list-tile-sub-title>
                 </v-list-tile-content>

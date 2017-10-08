@@ -111,11 +111,17 @@
           </v-flex>
           <v-flex xs6>
             <v-radio-group v-model="subscribe">
-              <v-radio class="pb-4" label="We would like to thank you for your support and keep you
-              informed of news, events and opportunities at King's College. Please tick
-              if you wish us to use your aress and email for this purpose." value="true" light color="purple darken-4"/>
-              <v-radio class="pt-4" label="My gift is anonymous - please do not include me in public
-              list of donors." value="false" light color="purple darken-4"/>
+              <v-radio class="pb-4" label="Subscribe" value="true" light color="purple darken-4"/>
+              <p>
+                We would like to thank you for your support and keep you
+                informed of news, events and opportunities at King's College. Please tick
+                if you wish us to use your aress and email for this purpose.
+              </p>
+              <v-radio class="pt-4" label="Opt-out" value="false" light color="purple darken-4"/>
+              <p>
+                My gift is anonymous - please do not include me in public
+                list of donors.
+              </p>
           </v-radio-group>
           </v-flex>
         </v-layout>
