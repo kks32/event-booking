@@ -42,7 +42,7 @@ export default {
       date: null,
       allowedDates: [],
       baseurl: '/bookings/',
-      sessions: ['Morning', 'Aternoon'],
+      sessions: ['Morning', 'Afternoon'],
       bookings: []
     }
   },
