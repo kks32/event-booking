@@ -7,7 +7,7 @@
         v-model="date"
         first-day-of-week=1
         :allowed-dates="allowedDates"
-        color="primary"
+        color="purple"
         landscape></v-date-picker>
       <v-card>
         <v-list three-line>
