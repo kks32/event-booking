@@ -7,14 +7,16 @@
           v-model="date"
           first-day-of-week=1
           :allowed-dates="allowedDates"
-          color="primary"
+          color="deep-purple darken-4"
+          header-color="deep-purple darken-4"
           landscape></v-date-picker>
       </v-flex>
       <v-flex xs12 class="hidden-sm-and-up">
         <v-date-picker
           class="mt-3"
           v-model="date"
-          first-day-of-week=1
+          first-day-of-week=1color="deep-purple darken-4"
+          header-color="deep-purple darken-4"
           :allowed-dates="allowedDates"></v-date-picker>
       </v-flex>
     </v-layout>
