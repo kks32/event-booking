@@ -23,10 +23,10 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs9>
-             <v-slider label="Adult price" v-bind:max="50" v-model="price.adultprice"></v-slider>
+             <v-slider label="Adult price" step="0.5" min="1" max="50" v-model="price.adultprice" thumb-label></v-slider>
            </v-flex>
            <v-flex xs3>
-             <v-text-field v-model="price.adultprice" type="number"></v-text-field>
+              <p>{{price.adultprice}}</p>
            </v-flex>
            <v-flex xs9>
               <v-slider label="Child price" v-bind:max="50" v-model="price.childprice"></v-slider>
@@ -70,11 +70,15 @@ export default {
     return {
       message: false,
       response: '',
+      adultprice: '',
+      childprice: '',
+      concessionprice: '',
+      guideprice: '',
       price: {
-        adultprice: 0,
-        childprice: 0,
-        concessionprice: 0,
-        guideprice: 0
+        adultprice: 9.0,
+        childprice: 0.0,
+        concessionprice: 0.0,
+        guideprice: 0.0
       }
     }
   },
