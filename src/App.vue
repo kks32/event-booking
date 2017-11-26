@@ -1,3 +1,4 @@
+$color-pack = false
 <template>
   <v-app id="app" top-toolbar>
     <header>

@@ -151,6 +151,28 @@
             <v-select label="Select a country" v-bind:items="countries" v-model="country"
               max-height="200" light item-value="number" single-line auto />
           </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'credit card'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field label="credit card number" :mask="mask" v-model="value"></v-text-field>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'cvv'" />
+          </v-flex>
+          <v-flex xs6>
+            <v-text-field label="cvv" v-model="cvv" min="3" max="3"></v-text-field>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader v-text="'month/year'" />
+          </v-flex>
+          <v-flex xs3>
+            <v-select v-bind:items="months" v-model="month" label="Select" light single-line auto />
+          </v-flex>
+          <v-flex xs3>
+            <v-select v-bind:items="years" v-model="year" label="Select" light single-line auto />
+          </v-flex>
+
           <v-flex xs12>
             <v-btn
               @click.native="createbooking()"
@@ -160,6 +182,17 @@
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
           </v-flex>
+          <form action="https://secure-test.worldpay.com/wcc/purchase" method="POST" style="margin-bottom: 10em;" class="back">
+            <input type="hidden" name="testMode" value="100" />
+            <input type="hidden" name="country" value="GB">
+            <input type="hidden" name="instId" value="296635" />
+            <input type="hidden" name="cartId" value="ResidentCard">
+            <input type="hidden" name="amount" value="100">
+            <input type="hidden" name="currency" value="GBP" />
+            <input type="hidden" name="hideCurrency" value="true" />
+            <input type=hidden name="noLanguageMenu" value="true">
+            <input type="submit" value="Checkout" class="rounded" />
+          </form>
         </v-layout>
       </v-container>
     </v-card-text>
@@ -188,6 +221,13 @@ export default {
       countries: [],
       notification: false,
       message: '',
+      mask: 'credit-card',
+      value: '0000000000000000',
+      cvv: '000',
+      month: 0,
+      year: 2018,
+      months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      years: [2017, 2018, 2019, 2020, 2021, 2022, 2023],
       booking: {
         uuid: '',
         name: '',

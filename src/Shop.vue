@@ -31,7 +31,7 @@
       </v-stepper-content>
       <v-stepper-content step="3">
         <BookingSummary></BookingSummary>
-        <Payment></Payment>
+        <!--<Payment></Payment>-->
         <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
         <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
         <v-btn color="primary" @click.native="">Buy</v-btn>
