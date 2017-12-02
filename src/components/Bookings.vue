@@ -35,6 +35,7 @@
 
 <script>
 import {HTTP} from '../http-common'
+import { getAccessToken } from '../auth'
 
 export default {
   name: 'bookings',
@@ -64,7 +65,9 @@ export default {
   },
   methods: {
     fetchbookings () {
-      HTTP.get('config/bookings/date/' + this.date)
+      HTTP.get('config/bookings/date/' + this.date, {
+        headers: {Authorization: `Bearer ${getAccessToken()}`}
+      })
         .then(response => {
           // JSON responses are automatically parsed.
           this.bookings = response.data
