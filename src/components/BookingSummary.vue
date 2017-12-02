@@ -286,8 +286,8 @@ export default {
     },
     createbooking () {
       this.fetchbooking()
-      console.log('bookings/' + this.booking.uuid)
-      HTTP.post('bookings/' + this.booking.uuid, this.booking)
+      console.log('api/v1/bookings/' + this.booking.uuid)
+      HTTP.post('api/v1/bookings/' + this.booking.uuid, this.booking)
         .then(response => {
           this.notification = true
           if (response.data === '') {

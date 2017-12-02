@@ -55,7 +55,7 @@ export default {
     this.$store.dispatch('purchase/setsession', this.session)
   },
   created () {
-    HTTP.get(`dates`)
+    HTTP.get(`api/v1/dates`)
     .then(response => {
       // JSON responses are automatically parsed.
       this.allowedDates = response.data
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     getsessions () {
-      HTTP.get(`sessions/` + this.date)
+      HTTP.get(`api/v1/sessions/` + this.date)
       .then(response => {
         // Parse JSON response for the day
         var session = response.data

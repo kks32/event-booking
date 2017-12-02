@@ -48,7 +48,7 @@ export default {
     }
   },
   created () {
-    HTTP.get(`dates`)
+    HTTP.get(`api/v1/dates`)
     .then(response => {
       // JSON responses are automatically parsed.
       this.allowedDates = response.data
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     fetchbookings () {
-      HTTP.get('bookings/date/' + this.date)
+      HTTP.get('config/bookings/date/' + this.date)
         .then(response => {
           // JSON responses are automatically parsed.
           this.bookings = response.data

@@ -140,7 +140,7 @@ export default {
     }
   },
   created () {
-    HTTP.get(`prices/`)
+    HTTP.get(`api/v1/prices/`)
     .then(response => {
       // JSON responses are automatically parsed.
       const prices = response.data
