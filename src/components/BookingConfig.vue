@@ -155,7 +155,7 @@ export default {
       this.config.excludedates = []
     },
     test_config () {
-      HTTP.post('test/config/dates', this.config)
+      HTTP.post('config/test/dates', this.config)
         .then(response => {
           this.get_testdates()
         })
@@ -165,7 +165,7 @@ export default {
         })
     },
     get_testdates () {
-      HTTP.get(`test/dates`)
+      HTTP.get(`config/test/dates`)
       .then(response => {
         // JSON responses are automatically parsed.
         this.allowedDates = response.data

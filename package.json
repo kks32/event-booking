@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "ajv": "^5.5.0",
+    "auth0-js": "^8.11.3",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^0.28.1",
     "html-loader": "^0.5.1",
+    "jwt-decode": "^2.2.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "uuid": "^3.0.1",
