@@ -91,7 +91,9 @@ export default {
   },
   methods: {
     update_prices () {
-      HTTP.post('config/prices', this.price)
+      HTTP.post('config/prices', this.price, {
+        headers: {Authorization: `Bearer ${getAccessToken()}`}
+      })
         .then(response => {
           this.response = 'Update successful!'
           this.message = true
