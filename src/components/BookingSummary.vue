@@ -13,7 +13,7 @@
     </v-card-title>
     <v-card-text class="grey lighten-4 elevation-1">
       <v-container fluid>
-        <v-layout row wrap>
+        <v-layout row wrap  v-if="paymentstatus === true">
           <qr-code :text=qruuid></qr-code>
         </v-layout>
         <v-layout row wrap>
@@ -43,7 +43,7 @@
       </v-container>
     </v-card-text>
   </v-card>
-  <v-card class="grey lighten-4 elevation-1">
+  <v-card class="grey lighten-4 elevation-1" v-if="paymentstatus === false">
     <v-card-title class="purple darken-4 white--text">
       <h6>Personal details</h6>
       <v-spacer></v-spacer>
@@ -173,13 +173,13 @@
             <v-select v-bind:items="years" v-model="booking.year" label="Select" light single-line auto />
           </v-flex>
 
-          <v-flex xs12>
+          <v-flex xs12 class="text-xs-right">
             <v-btn
               @click.native="createbooking()"
               color="green"
               dark
-              >Save booking
-              <v-icon right dark>cloud_upload</v-icon>
+              >Confirm and Pay
+              <v-icon right dark>shopping_cart</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>
@@ -208,6 +208,7 @@ export default {
       uuid: '',
       countries: [],
       notification: false,
+      paymentstatus: false,
       message: '',
       mask: 'credit-card',
       cvv: '000',
@@ -287,6 +288,7 @@ export default {
           this.notification = true
           if (response.status === 201) {
             this.message = 'Success'
+            this.paymentstatus = true
           } else {
             this.message = 'Apologies! your payment failed!'
           }
