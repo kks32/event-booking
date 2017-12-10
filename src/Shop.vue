@@ -31,9 +31,8 @@
       </v-stepper-content>
       <v-stepper-content step="3">
         <BookingSummary></BookingSummary>
-        <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
-        <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3"><v-icon left>arrow_back</v-icon>Back</v-btn>
-        <!--<v-btn color="primary" @click.native="">Buy</v-btn>-->
+        <v-btn flat @click.native="cancelpurchase = true, purchasestep = 1" class="grey lighten-3" v-if="!purchasestatus"><v-icon left>remove_circle</v-icon>Cancel</v-btn>
+        <v-btn flat @click.native="purchasestep = 2" class="grey lighten-3" v-if="!purchasestatus"><v-icon left>arrow_back</v-icon>Back</v-btn>
       </v-stepper-content>
     </v-stepper>
   </div>
@@ -54,12 +53,14 @@ export default {
   data () {
     return {
       cancelpurchase: false,
+      purchasestatus: false,
       purchasestep: 0
     }
   },
   created () {
     const uuidV4 = require('uuid/v4')
     this.$store.dispatch('purchase/setuuid', uuidV4())
+    this.purchasestatus = this.$store.getters['countries/get_paymentstatus']
   }
 }
 </script>

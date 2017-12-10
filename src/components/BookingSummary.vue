@@ -16,7 +16,7 @@
         <v-layout row wrap  v-if="paymentstatus === true">
           <qr-code :text=qruuid></qr-code>
         </v-layout>
-        <v-layout row wrap>
+        <v-layout row wrap v-if="paymentstatus === true">
           <v-flex xs6>
             <v-subheader v-text="'Booking reference'"/>
           </v-flex>
@@ -289,6 +289,7 @@ export default {
           if (response.status === 201) {
             this.message = 'Success'
             this.paymentstatus = true
+            this.$store.dispatch('purchase/set_paymentstatus', this.validate())
           } else {
             this.message = 'Apologies! your payment failed!'
           }

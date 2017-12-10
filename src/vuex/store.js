@@ -39,6 +39,7 @@ const purchasemodule = {
     date: '',
     session: '',
     ticketvalidation: false,
+    paymentstatus: false,
     ntickets: 0,
     nadults: 0,
     nchild: 0,
@@ -84,6 +85,9 @@ const purchasemodule = {
     },
     get_guidebooks: (state) => {
       return state.guidebooks
+    },
+    get_paymentstatus: (state) => {
+      return state.paymentstatus
     }
   },
   actions: {
@@ -122,6 +126,9 @@ const purchasemodule = {
     },
     set_guidebooks: ({commit, state}, languages) => {
       state.guidebooks = languages
+    },
+    set_paymentstatus: ({commit, state}, bool) => {
+      state.paymentstatus = bool
     }
   }
 }
