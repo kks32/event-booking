@@ -10,32 +10,9 @@
     <link rel="icon" type="image/png" href="static/media/favicon-32x32.png" sizes="32x32">
     <link href="https://unpkg.com/vuetify@0.16.3/dist/vuetify.min.css" rel="stylesheet" type="text/css">
     <script src="https://unpkg.com/vuetify@0.16.3/dist/vuetify.min.js"></script>
-    <script src="https://cdn.worldpay.com/v1/worldpay.js"></script>
   </head>
   <body>
     <div id="app">
     </div>
   </body>
 </html>
-
-<script type='text/javascript'>
-window.onload = function() {
-  Worldpay.useTemplateForm({
-    'clientKey':'your-test-client-key',
-    'form':'paymentForm',
-    'paymentSection':'paymentSection',
-    'display':'inline',
-    'reusable':true,
-    'callback': function(obj) {
-      if (obj && obj.token) {
-        var _el = document.createElement('input');
-        _el.value = obj.token;
-        _el.type = 'hidden';
-        _el.name = 'token';
-        document.getElementById('paymentForm').appendChild(_el);
-        document.getElementById('paymentForm').submit();
-      }
-    }
-  });
-}
-</script>

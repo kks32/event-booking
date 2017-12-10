@@ -285,10 +285,10 @@ export default {
       HTTP.post('api/v1/bookings/' + this.booking.uuid, this.booking)
         .then(response => {
           this.notification = true
-          if (response.data === '') {
-            this.message = 'Success!'
+          if (response.status === 201) {
+            this.message = 'Success'
           } else {
-            this.message = response.data
+            this.message = 'Apologies! your payment failed!'
           }
         })
         .catch(e => {
