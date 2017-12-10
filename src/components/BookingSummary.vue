@@ -155,7 +155,7 @@
             <v-subheader v-text="'credit card'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="credit card number" max="16" :mask="mask" v-model="value"></v-text-field>
+            <v-text-field label="credit card number" max="16" :mask="mask" v-model="booking.ccnumber"></v-text-field>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'cvv'" />
@@ -167,10 +167,10 @@
             <v-subheader v-text="'month/year'" />
           </v-flex>
           <v-flex xs3>
-            <v-select v-bind:items="months" v-model="month" label="Select" light single-line auto />
+            <v-select v-bind:items="months" v-model="booking.month" label="Select" light single-line auto />
           </v-flex>
           <v-flex xs3>
-            <v-select v-bind:items="years" v-model="year" label="Select" light single-line auto />
+            <v-select v-bind:items="years" v-model="booking.year" label="Select" light single-line auto />
           </v-flex>
 
           <v-flex xs12>
@@ -212,15 +212,13 @@ export default {
       notification: false,
       message: '',
       mask: 'credit-card',
-      value: '',
       cvv: '000',
-      month: 0,
-      year: 2018,
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
       booking: {
         uuid: '',
         name: '',
+        email: '',
         date: '',
         session: '',
         total: 0,
@@ -229,7 +227,11 @@ export default {
         nchild: 0,
         nconcession: 0,
         nguides: 0,
-        guidebooks: []
+        guidebooks: [],
+        ccnumber: '',
+        cvv: '000',
+        month: 0,
+        year: 2018
       }
     }
   },
@@ -239,14 +241,15 @@ export default {
   watch: {
     name () {
       this.booking.name = this.name
-      console.log(this.booking.name)
     },
     email () {
+      this.booking.email = this.email
       const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      this.testemail = regex.test(this.email)
+      this.testemail = regex.test(this.booking.email)
     },
     cvv () {
-      this.testcvv = ((this.cvv).length === 3)
+      this.booking.cvv = this.cvv
+      this.testcvv = ((this.booking.cvv).length === 3)
     },
     postcode () {
       this.evaluatepostcode()
@@ -279,7 +282,6 @@ export default {
     },
     createbooking () {
       this.fetchbooking()
-      console.log('api/v1/bookings/' + this.booking.uuid)
       HTTP.post('api/v1/bookings/' + this.booking.uuid, this.booking)
         .then(response => {
           this.notification = true
