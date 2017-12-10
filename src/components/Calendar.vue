@@ -15,7 +15,8 @@
         <v-date-picker
           class="mt-3"
           v-model="date"
-          first-day-of-week=1color="deep-purple darken-4"
+          first-day-of-week=1
+          color="deep-purple darken-4"
           header-color="deep-purple darken-4"
           :allowed-dates="allowedDates"></v-date-picker>
       </v-flex>
