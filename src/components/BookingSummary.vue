@@ -85,7 +85,7 @@
             <v-subheader v-text="'Gift aid'" />
           </v-flex>
           <v-flex xs6>
-            <v-radio-group v-model="giftaid">
+            <v-radio-group v-model="booking.giftaid">
               <v-radio label="Yes, I wish to Gift Aid my donation." primary value="true" light color="purple darken-4" />
               <p>
                 I wish to Gift Aid my donation to King's College,
@@ -105,12 +105,12 @@
 
           </v-flex>
         </v-layout>
-        <v-layout row wrap v-if="giftaid==='true'">
+        <v-layout row wrap v-if="booking.giftaid==='true'">
           <v-flex xs6>
             <v-subheader v-text="'Subscribe'" />
           </v-flex>
           <v-flex xs6>
-            <v-radio-group v-model="subscribe">
+            <v-radio-group v-model="booking.subscribe">
               <v-radio class="pb-4" label="Subscribe" value="true" light color="purple darken-4"/>
               <p>
                 We would like to thank you for your support and keep you
@@ -125,7 +125,7 @@
           </v-radio-group>
           </v-flex>
         </v-layout>
-        <v-layout row wrap v-if="giftaid==='true'">
+        <v-layout row wrap>
           <v-flex xs6>
             <v-subheader v-text="'Address'" />
           </v-flex>
@@ -202,8 +202,6 @@ export default {
       city: '',
       postcode: '',
       country: 'United Kingdom',
-      giftaid: 'true',
-      subscribe: 'true',
       testpostcode: 'false',
       testemail: 'false',
       testcvv: 'false',
@@ -219,6 +217,8 @@ export default {
         uuid: '',
         name: '',
         email: '',
+        giftaid: 'true',
+        subscribe: 'true',
         date: '',
         session: '',
         total: 0,
