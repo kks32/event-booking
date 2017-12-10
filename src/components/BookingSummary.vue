@@ -155,13 +155,13 @@
             <v-subheader v-text="'credit card'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="credit card number" :mask="mask" v-model="value"></v-text-field>
+            <v-text-field label="credit card number" max="16" :mask="mask" v-model="value"></v-text-field>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'cvv'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="cvv" v-model="cvv" min="3" max="3"></v-text-field>
+            <v-text-field label="cvv" v-model="cvv" max="3"  :rules="[() => testcvv || 'Please enter a valid CVV']"></v-text-field>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'month/year'" />
@@ -182,17 +182,6 @@
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
           </v-flex>
-          <form action="https://secure-test.worldpay.com/wcc/purchase" method="POST" style="margin-bottom: 10em;" class="back">
-            <input type="hidden" name="testMode" value="100" />
-            <input type="hidden" name="country" value="GB">
-            <input type="hidden" name="instId" value="296635" />
-            <input type="hidden" name="cartId" value="ResidentCard">
-            <input type="hidden" name="amount" value="100">
-            <input type="hidden" name="currency" value="GBP" />
-            <input type="hidden" name="hideCurrency" value="true" />
-            <input type=hidden name="noLanguageMenu" value="true">
-            <input type="submit" value="Checkout" class="rounded" />
-          </form>
         </v-layout>
       </v-container>
     </v-card-text>
@@ -217,17 +206,18 @@ export default {
       subscribe: 'true',
       testpostcode: 'false',
       testemail: 'false',
+      testcvv: 'false',
       uuid: '',
       countries: [],
       notification: false,
       message: '',
       mask: 'credit-card',
-      value: '0000000000000000',
+      value: '',
       cvv: '000',
       month: 0,
       year: 2018,
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      years: [2017, 2018, 2019, 2020, 2021, 2022, 2023],
+      years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
       booking: {
         uuid: '',
         name: '',
@@ -254,6 +244,9 @@ export default {
     email () {
       const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       this.testemail = regex.test(this.email)
+    },
+    cvv () {
+      this.testcvv = ((this.cvv).length === 3)
     },
     postcode () {
       this.evaluatepostcode()

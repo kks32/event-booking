@@ -117,6 +117,8 @@
 
 <script>
 import {HTTP} from '../http-common'
+import { getAccessToken } from '../auth'
+
 export default {
   'name': 'BookingConfig',
   data () {
@@ -165,7 +167,9 @@ export default {
         })
     },
     get_testdates () {
-      HTTP.get(`config/test/dates`)
+      HTTP.get(`config/test/dates`, {
+        headers: {Authorization: `Bearer ${getAccessToken()}`}
+      })
       .then(response => {
         // JSON responses are automatically parsed.
         this.allowedDates = response.data
@@ -180,7 +184,9 @@ export default {
       })
     },
     update_config () {
-      HTTP.post('config/dates', this.config)
+      HTTP.post('config/dates', this.config, {
+        headers: {Authorization: `Bearer ${getAccessToken()}`}
+      })
         .then(response => {
           this.message = true
           this.$router.push({path: '/config'})

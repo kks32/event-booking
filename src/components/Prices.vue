@@ -64,6 +64,8 @@
 
 <script>
 import {HTTP} from '../http-common'
+import { getAccessToken } from '../auth'
+
 export default {
   'name': 'Prices',
   data () {
