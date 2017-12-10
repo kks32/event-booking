@@ -198,11 +198,11 @@ export default {
   'name': 'Summary',
   data () {
     return {
-      name: '',
-      email: '',
-      address: '',
-      city: '',
-      postcode: '',
+      name: 'Someone Anonymous',
+      email: 'test@gmail.com',
+      address: 'Somewhere',
+      city: 'Cambridge',
+      postcode: 'CB4 4LA',
       country: 'United Kingdom',
       testname: 'false',
       testpostcode: 'false',
@@ -220,8 +220,8 @@ export default {
       paymentstatus: false,
       message: '',
       mask: 'credit-card',
-      ccnumber: '0000',
-      cvv: '000',
+      ccnumber: '4444333322221111',
+      cvv: '123',
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
       booking: {
@@ -244,7 +244,7 @@ export default {
         nguides: 0,
         guidebooks: [],
         ccnumber: '',
-        cvv: '000',
+        cvv: '123',
         month: 1,
         year: 2018
       }
