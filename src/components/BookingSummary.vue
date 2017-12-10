@@ -62,6 +62,7 @@
               min="5"
               max="255"
               required
+              :rules="[() => testname || 'Please enter a valid name']"
             />
           </v-flex>
         </v-layout>
@@ -130,13 +131,13 @@
             <v-subheader v-text="'Address'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="address" counter v-model="address" min="5" max="255"/>
+            <v-text-field label="address" counter v-model="address" min="5" max="255" :rules="[() => testaddress || 'Please enter a valid address']"/>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'city'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="city" counter v-model="city" min="5" max="255"/>
+            <v-text-field label="city" counter v-model="city" min="5" max="255" :rules="[() => testcity || 'Please enter a valid city']"/>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'postcode'" />
@@ -155,13 +156,13 @@
             <v-subheader v-text="'credit card'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="credit card number" max="16" :mask="mask" v-model="booking.ccnumber"></v-text-field>
+            <v-text-field label="credit card number" max="16" :mask="mask" v-model="ccnumber" :rules="[() => testccnumber || 'Please enter a valid Credit / Debit card number']"></v-text-field>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'cvv'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="cvv" v-model="cvv" max="3"  :rules="[() => testcvv || 'Please enter a valid CVV']"></v-text-field>
+            <v-text-field label="cvv" v-model="cvv" max="3" :rules="[() => testcvv || 'Please enter a valid CVV']"></v-text-field>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'month/year'" />
@@ -178,6 +179,7 @@
               @click.native="createbooking()"
               color="green"
               dark
+              :disabled="!fieldcomplete"
               >Confirm and Pay
               <v-icon right dark>shopping_cart</v-icon>
             </v-btn>
@@ -202,15 +204,23 @@ export default {
       city: '',
       postcode: '',
       country: 'United Kingdom',
+      testname: 'false',
       testpostcode: 'false',
       testemail: 'false',
       testcvv: 'false',
+      testaddress: 'false',
+      testcity: 'false',
+      testccnumber: 'false',
+      testmonth: 'false',
+      testyear: 'false',
+      fieldcomplete: false,
       uuid: '',
       countries: [],
       notification: false,
       paymentstatus: false,
       message: '',
       mask: 'credit-card',
+      ccnumber: '0000',
       cvv: '000',
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
@@ -220,6 +230,10 @@ export default {
         email: '',
         giftaid: 'true',
         subscribe: 'true',
+        address: '',
+        city: '',
+        postcode: '',
+        country: 'United Kingdom',
         date: '',
         session: '',
         total: 0,
@@ -231,7 +245,7 @@ export default {
         guidebooks: [],
         ccnumber: '',
         cvv: '000',
-        month: 0,
+        month: 1,
         year: 2018
       }
     }
@@ -242,24 +256,56 @@ export default {
   watch: {
     name () {
       this.booking.name = this.name
+      this.testname = ((this.booking.name).length > 4)
+      this.testfields()
     },
     email () {
       this.booking.email = this.email
       const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       this.testemail = regex.test(this.booking.email)
+      this.testfields()
     },
     cvv () {
       this.booking.cvv = this.cvv
       this.testcvv = ((this.booking.cvv).length === 3)
+      this.testfields()
     },
     postcode () {
       this.evaluatepostcode()
+      if (this.testpostcode) {
+        this.booking.postcode = this.postcode
+      }
+      this.testfields()
     },
     countries () {
       this.evaluatepostcode()
+    },
+    city () {
+      this.booking.city = this.city
+      this.testcity = ((this.booking.city).length > 4)
+      this.testfields()
+    },
+    address () {
+      this.booking.address = this.address
+      this.testaddress = ((this.booking.address).length > 4)
+      this.testfields()
+    },
+    country () {
+      this.booking.country = this.country
+      this.testcountry = ((this.booking.country).length > 4)
+      this.testfields()
+    },
+    ccnumber () {
+      this.booking.ccnumber = this.ccnumber
+      this.testccnumber = ((this.booking.ccnumber).length === 16)
+      this.testfields()
     }
   },
   methods: {
+    testfields () {
+      this.fieldcomplete = (this.testname && this.testemail && this.testaddress &&
+                            this.testcity && this.testpostcode && this.testccnumber && this.testcvv)
+    },
     evaluatepostcode () {
       if (this.country === 'United Kingdom') {
         const ukpostcode = this.postcode.replace(/\s/g, '')
