@@ -9,7 +9,7 @@ const ACCESS_TOKEN_KEY = 'access_token'
 
 const CLIENT_ID = 'AJQAczqaDLavX2GFsK9o10IsgFzTiRGs'
 const CLIENT_DOMAIN = 'kings.eu.auth0.com'
-const REDIRECT = 'http://store.kings.cam.ac.uk/callback'
+const REDIRECT = 'https://store.kings.cam.ac.uk/callback'
 const SCOPE = 'full_access'
 const AUDIENCE = 'https://api.kings.cam.ac.uk'
 
