@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Booking from '@/Booking'
 import Callback from '@/components/Callback'
 import Config from '@/Config'
+import Contact from '@/Contact'
 import Shop from '@/Shop'
 
 import { requireAuth } from '../auth'
@@ -20,6 +21,10 @@ export default new Router({
       path: '/config',
       beforeEnter: requireAuth,
       component: Config
+    },
+    {
+      path: '/contact',
+      component: Contact
     },
     {
       path: '/bookings',
