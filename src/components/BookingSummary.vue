@@ -155,8 +155,11 @@
           <v-flex xs6>
             <v-subheader v-text="'credit card'" />
           </v-flex>
-          <v-flex xs6>
+          <v-flex xs3>
             <v-text-field label="credit card number" max="16" :mask="mask" v-model="ccnumber" :rules="[() => testccnumber || 'Please enter a valid Credit / Debit card number']"></v-text-field>
+          </v-flex>
+          <v-flex xs3>
+            <img src="static/media/payment-cards.png" style="width:50%" alt="Payment cards">
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'cvv'" />
