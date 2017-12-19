@@ -176,7 +176,13 @@
           <v-flex xs3>
             <v-select v-bind:items="years" v-model="booking.year" label="Select" light single-line auto />
           </v-flex>
+          <v-flex xs6>
+            <v-subheader><a href="/refund" target="_blank">Refund policy (click here to read)</a></v-subheader>
+          </v-flex>
+          <v-flex xs6>
+            <v-checkbox label="Accept refund policy" v-model="refundpolicy" light></v-checkbox>
 
+          </v-flex>
           <v-flex xs12 class="text-xs-right">
             <v-btn
               @click.native="createbooking()"
@@ -216,6 +222,7 @@ export default {
       testccnumber: 'false',
       testmonth: 'false',
       testyear: 'false',
+      refundpolicy: true,
       fieldcomplete: false,
       uuid: '',
       countries: [],
@@ -302,12 +309,16 @@ export default {
       this.booking.ccnumber = this.ccnumber
       this.testccnumber = ((this.booking.ccnumber).length === 16)
       this.testfields()
+    },
+    refundpolicy () {
+      this.testfields()
     }
   },
   methods: {
     testfields () {
       this.fieldcomplete = (this.testname && this.testemail && this.testaddress &&
-                            this.testcity && this.testpostcode && this.testccnumber && this.testcvv)
+                            this.testcity && this.testpostcode && this.testccnumber &&
+                            this.testcvv && this.refundpolicy)
     },
     evaluatepostcode () {
       if (this.country === 'United Kingdom') {

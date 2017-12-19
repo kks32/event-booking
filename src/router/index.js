@@ -5,6 +5,7 @@ import Booking from '@/Booking'
 import Callback from '@/components/Callback'
 import Config from '@/Config'
 import Contact from '@/Contact'
+import Refund from '@/Refund'
 import Shop from '@/Shop'
 
 import { requireAuth } from '../auth'
@@ -30,6 +31,10 @@ export default new Router({
       path: '/bookings',
       beforeEnter: requireAuth,
       component: Booking
+    },
+    {
+      path: '/refund',
+      component: Refund
     },
     {
       path: '/callback',
