@@ -141,7 +141,9 @@ export default {
     this.get_testdates()
 
     // Get exclude dates
-    HTTP.get(`config/dates`)
+    HTTP.get(`config/dates`, {
+      headers: {Authorization: `Bearer ${getAccessToken()}`}
+    })
     .then(response => {
       // JSON responses are automatically parsed.
       const conf = response.data
@@ -157,7 +159,9 @@ export default {
       this.config.excludedates = []
     },
     test_config () {
-      HTTP.post('config/test/dates', this.config)
+      HTTP.post('config/test/dates', this.config, {
+        headers: {Authorization: `Bearer ${getAccessToken()}`}
+      })
         .then(response => {
           this.get_testdates()
         })
