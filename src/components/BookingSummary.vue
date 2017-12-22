@@ -34,7 +34,7 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs6>
-            <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets, of which {{this.$store.getters['purchase/getnadults']}} adults and  {{this.$store.getters['purchase/get_nguidebooks']}} guides ({{this.$store.getters['purchase/get_guidebooks']}} ) is:</v-subheader>
+            <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets ({{this.$store.getters['purchase/getnadults']}} adults, {{this.$store.getters['purchase/getnconcession']}} students and {{this.$store.getters['purchase/getnchild']}} child) and  {{this.$store.getters['purchase/get_nguidebooks']}} guides ({{booking.guidebooks}} ) is:</v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-subheader> £{{parseFloat(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>

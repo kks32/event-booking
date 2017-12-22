@@ -21,9 +21,9 @@
                 </v-avatar>
                 <v-list-tile-content>
                   <v-list-tile-title v-html="booking.name + ' - ' + booking.uuid"></v-list-tile-title>
-                  <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of tickets: ' + booking.ntickets + ' (students: ' + booking.nconcessions +
-                  ', adults: ' + booking.nadults + ', child: ' + booking.nchilds + ')'"></v-list-tile-sub-title>
-                  <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of guides: ' + booking.nguides + ' (' + booking.guides + ')'"></v-list-tile-sub-title>
+                  <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of tickets: ' + booking.ntickets + ' (students: ' + booking.nconcession +
+                  ', adults: ' + booking.nadults + ', child: ' + booking.nchild + ')'"></v-list-tile-sub-title>
+                  <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Number of guides: ' + booking.nguides + ' (' + booking.guidebooks + ')'"></v-list-tile-sub-title>
                   <v-list-tile-sub-title class="grey--text text--darken-2" v-html="'Gift aid: ' + booking.giftaid"></v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
