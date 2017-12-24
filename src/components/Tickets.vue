@@ -209,6 +209,7 @@ export default {
       } else {
         this.nguideerror = false
       }
+      this.$store.dispatch('purchase/set_guidebooks', this.guides)
       this.validate()
     },
     validate () {
