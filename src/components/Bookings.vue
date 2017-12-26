@@ -38,7 +38,6 @@
 <script>
 import {HTTP} from '../http-common'
 import { getAccessToken } from '../auth'
-
 export default {
   name: 'bookings',
   data () {
@@ -52,23 +51,25 @@ export default {
   },
   created () {
     HTTP.get(`api/v1/dates`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.allowedDates = response.data
-      if (this.allowedDates.length > 0) {
-        this.date = this.allowedDates[0]
-      } else {
-        this.date = null
-      }
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.allowedDates = response.data
+        if (this.allowedDates.length > 0) {
+          this.date = this.allowedDates[0]
+        } else {
+          this.date = null
+        }
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
   },
   methods: {
     fetchbookings () {
       HTTP.get('config/bookings/date/' + this.date, {
-        headers: {Authorization: `Bearer ${getAccessToken()}`}
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`
+        }
       })
         .then(response => {
           // JSON responses are automatically parsed.

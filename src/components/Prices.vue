@@ -63,9 +63,12 @@
 </template>
 
 <script>
-import {HTTP} from '../http-common'
-import { getAccessToken } from '../auth'
-
+import {
+  HTTP
+} from '../http-common'
+import {
+  getAccessToken
+} from '../auth'
 export default {
   'name': 'Prices',
   data () {
@@ -83,23 +86,27 @@ export default {
   },
   created () {
     HTTP.get(`api/v1/prices`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.price = response.data
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.price = response.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
   },
   methods: {
     update_prices () {
       HTTP.post('config/prices', this.price, {
-        headers: {Authorization: `Bearer ${getAccessToken()}`}
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`
+        }
       })
         .then(response => {
           this.response = 'Update successful!'
           this.message = true
-          this.$router.push({path: '/config'})
+          this.$router.push({
+            path: '/config'
+          })
         })
         .catch(e => {
           this.errorbar = true

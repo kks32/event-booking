@@ -144,15 +144,15 @@ export default {
     HTTP.get(`config/dates`, {
       headers: {Authorization: `Bearer ${getAccessToken()}`}
     })
-    .then(response => {
-      // JSON responses are automatically parsed.
-      const conf = response.data
-      this.config.excludedates = conf.excludedates
-      console.log(this.config.excludedates)
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        const conf = response.data
+        this.config.excludedates = conf.excludedates
+        console.log(this.config.excludedates)
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
   },
   methods: {
     clearexcludedates () {
@@ -174,18 +174,18 @@ export default {
       HTTP.get(`config/test/dates`, {
         headers: {Authorization: `Bearer ${getAccessToken()}`}
       })
-      .then(response => {
-        // JSON responses are automatically parsed.
-        this.allowedDates = response.data
-        if (this.allowedDates.length > 0) {
-          this.date = this.allowedDates[0]
-        } else {
-          this.date = null
-        }
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.allowedDates = response.data
+          if (this.allowedDates.length > 0) {
+            this.date = this.allowedDates[0]
+          } else {
+            this.date = null
+          }
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     },
     update_config () {
       HTTP.post('config/dates', this.config, {

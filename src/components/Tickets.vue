@@ -141,17 +141,17 @@ export default {
   },
   created () {
     HTTP.get(`api/v1/prices/`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      const prices = response.data
-      this.adultcost = prices.adultprice
-      this.childcost = prices.childprice
-      this.concessioncost = prices.concessionprice
-      this.guidecost = prices.guideprice
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        const prices = response.data
+        this.adultcost = prices.adultprice
+        this.childcost = prices.childprice
+        this.concessioncost = prices.concessionprice
+        this.guidecost = prices.guideprice
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
   },
   computed: {
     adultprice () {
@@ -214,14 +214,14 @@ export default {
     },
     validate () {
       return (// Set Maximum of 10 tickets for sale and is more than 0
-              this.$store.getters['purchase/getntickets'] <= 10 &&
-              this.$store.getters['purchase/getntickets'] > 0 &&
-              // Check if a student or an adult ticket is found
-              (this.adult > 0 || this.concession > 0) &&
-              // Check if the guidebooks and their numbers match
-              !this.nguideerror &&
-              // Check if ntickets is within the maximum number of tickets available for session
-              this.$store.getters['purchase/getntickets'] <= this.$store.getters['purchase/getmaxtickets'])
+        this.$store.getters['purchase/getntickets'] <= 10 &&
+        this.$store.getters['purchase/getntickets'] > 0 &&
+        // Check if a student or an adult ticket is found
+        (this.adult > 0 || this.concession > 0) &&
+        // Check if the guidebooks and their numbers match
+        !this.nguideerror &&
+        // Check if ntickets is within the maximum number of tickets available for session
+        this.$store.getters['purchase/getntickets'] <= this.$store.getters['purchase/getmaxtickets'])
     }
   }
 }

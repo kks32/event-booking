@@ -57,32 +57,32 @@ export default {
   },
   created () {
     HTTP.get(`api/v1/dates`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.allowedDates = response.data
-      if (this.allowedDates.length > 0) {
-        this.date = this.allowedDates[0]
-      } else {
-        this.date = null
-      }
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
-  },
-  methods: {
-    getsessions () {
-      HTTP.get(`api/v1/sessions/` + this.date)
       .then(response => {
-        // Parse JSON response for the day
-        var session = response.data
-        this.sessions.nmorningtickets = session.nmorningtickets
-        this.sessions.nafternoontickets = session.nafternoontickets
-        this.session = ''
+        // JSON responses are automatically parsed.
+        this.allowedDates = response.data
+        if (this.allowedDates.length > 0) {
+          this.date = this.allowedDates[0]
+        } else {
+          this.date = null
+        }
       })
       .catch(e => {
         this.errors.push(e)
       })
+  },
+  methods: {
+    getsessions () {
+      HTTP.get(`api/v1/sessions/` + this.date)
+        .then(response => {
+          // Parse JSON response for the day
+          var session = response.data
+          this.sessions.nmorningtickets = session.nmorningtickets
+          this.sessions.nafternoontickets = session.nafternoontickets
+          this.session = ''
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   },
   watch: {
