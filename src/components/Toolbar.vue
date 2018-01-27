@@ -22,7 +22,7 @@ export default {
         {'title': 'contact us', 'link': '/contact', 'show': false, 'router': false},
         {'title': 'bookings', 'link': '/bookings', 'show': true, 'router': false},
         {'title': 'config', 'link': '/config', 'show': true, 'router': false},
-        {'title': 'shop', 'link': '/', 'show': true, 'router': false}
+        {'title': 'shop', 'link': '/', 'show': false, 'router': false}
       ]
     }
   },
