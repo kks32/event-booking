@@ -4,7 +4,7 @@
   <v-spacer></v-spacer>
   <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
   <v-toolbar-items class="hidden-sm-and-down" v-for="(item,i) in items" :key="i">
-    <v-btn class="purple darken-4 white--text" :href="item.link" :router="item.router">{{item.title}}</v-btn>
+    <v-btn class="purple darken-4 white--text" v-if="isLoggedIn() == item.show" :href="item.link" :router="item.router">{{item.title}}</v-btn>
   </v-toolbar-items>
   <button class="btn btn-danger log" v-show="isLoggedIn()" @click="handleLogout()">Log out </button>
   <button class="btn btn-info log" v-show="!isLoggedIn()" @click="handleLogin()">Log In</button>
@@ -19,10 +19,10 @@ export default {
     return {
       title: 'King\'s College, Cambridge',
       items: [
-        {'title': 'contact us', 'link': '/contact', 'router': false},
-        {'title': 'bookings', 'link': '/bookings', 'router': false},
-        {'title': 'config', 'link': '/config', 'router': false},
-        {'title': 'shop', 'link': '/', 'router': false}
+        {'title': 'contact us', 'link': '/contact', 'show': false, 'router': false},
+        {'title': 'bookings', 'link': '/bookings', 'show': true, 'router': false},
+        {'title': 'config', 'link': '/config', 'show': true, 'router': false},
+        {'title': 'shop', 'link': '/', 'show': true, 'router': false}
       ]
     }
   },
