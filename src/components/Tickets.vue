@@ -83,7 +83,7 @@
               label="Select guidebook languages"
               :items="guidebooks"
               item-text="lang"
-              item-value="id"
+              item-value="lang"
               multiple
               chips
             ></v-select>
@@ -176,6 +176,7 @@ export default {
   watch: {
     guides () {
       this.guidebookerror()
+      console.log(this.guides)
     },
     nguidebooks () {
       this.guidebookerror()
