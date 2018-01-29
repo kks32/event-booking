@@ -23,25 +23,25 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs9>
-             <v-slider label="Adult price" step="0.5" min="1" max="50" v-model="adultprice" thumb-label></v-slider>
+            <v-slider label="Adult price" step="0.5" min="1" max="50" v-model="price.adultprice" thumb-label></v-slider>
            </v-flex>
            <v-flex xs3>
-              <p>{{price.adultprice}}</p>
+              <v-text-field v-model="price.adultprice" type="number"></v-text-field>
            </v-flex>
            <v-flex xs9>
-              <v-slider label="Child price" v-bind:max="50" v-model="price.childprice"></v-slider>
+             <v-slider label="Child price" step="0.5" min="1" max="50" v-model="price.childprice" thumb-label></v-slider>
             </v-flex>
             <v-flex xs3>
               <v-text-field v-model="price.childprice" type="number"></v-text-field>
             </v-flex>
             <v-flex xs9>
-               <v-slider label="Concession price" v-bind:max="50" v-model="price.concessionprice"></v-slider>
+              <v-slider label="Concession price" step="0.5" min="1" max="50" v-model="price.concessionprice" thumb-label></v-slider>
             </v-flex>
             <v-flex xs3>
               <v-text-field v-model="price.concessionprice" type="number"></v-text-field>
             </v-flex>
             <v-flex xs9>
-              <v-slider label="Guide price" v-bind:max="50" v-model="price.guideprice"></v-slider>
+              <v-slider label="Guide price" step="0.5" min="1" max="50" v-model="price.guideprice" thumb-label></v-slider>
             </v-flex>
             <v-flex xs3>
               <v-text-field v-model="price.guideprice" type="number"></v-text-field>
