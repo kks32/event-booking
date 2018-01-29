@@ -350,9 +350,10 @@ export default {
           if (response.status === 201) {
             this.message = 'Success'
             this.paymentstatus = true
-            this.$store.dispatch('purchase/set_paymentstatus', this.validate())
+            this.$store.dispatch('purchase/set_paymentstatus', true)
           } else {
             this.message = 'Apologies! your payment failed!'
+            this.$store.dispatch('purchase/set_paymentstatus', false)
           }
         })
         .catch(e => {

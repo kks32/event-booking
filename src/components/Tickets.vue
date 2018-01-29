@@ -176,9 +176,11 @@ export default {
   watch: {
     guides () {
       this.guidebookerror()
-      console.log(this.guides)
     },
     nguidebooks () {
+      this.guidebookerror()
+    },
+    nguideerror () {
       this.guidebookerror()
     },
     total () {
@@ -203,8 +205,7 @@ export default {
     // Throws an error if the number of guidebooks doesn't match number of
     // selected guidebook languages
     guidebookerror () {
-      if (((this.guides.length > 0 || this.nguidebooks > 0) &&
-           this.guides.length > this.nguidebooks) ||
+      if ((this.guides.length > this.nguidebooks) ||
            (this.nguidebooks > 0 && this.guides.length === 0)) {
         this.nguideerror = true
       } else {
@@ -212,6 +213,7 @@ export default {
       }
       this.$store.dispatch('purchase/set_guidebooks', this.guides)
       this.validate()
+      this.$store.dispatch('purchase/set_ticketvalidation', this.validate())
     },
     validate () {
       return (// Set Maximum of 10 tickets for sale and is more than 0
