@@ -80,7 +80,7 @@
           <v-flex xs3>
             <v-select
               v-model="guides"
-              label="Select guidebook languages"
+              label="Please indicate the languages you would like"
               :items="guidebooks"
               item-text="lang"
               item-value="lang"
