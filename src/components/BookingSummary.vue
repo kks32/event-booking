@@ -340,7 +340,6 @@ export default {
       this.booking.nconcession = Number(this.$store.getters['purchase/getnconcession'])
       this.booking.nguides = Number(this.$store.getters['purchase/get_nguidebooks'])
       this.booking.guidebooks = this.$store.getters['purchase/get_guidebooks']
-      console.log(this.booking.guidebooks)
     },
     createbooking () {
       this.fetchbooking()

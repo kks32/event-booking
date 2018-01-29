@@ -148,7 +148,6 @@ export default {
         // JSON responses are automatically parsed.
         const conf = response.data
         this.config.excludedates = conf.excludedates
-        console.log(this.config.excludedates)
       })
       .catch(e => {
         this.errors.push(e)
