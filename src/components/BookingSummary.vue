@@ -283,7 +283,7 @@ export default {
     },
     cvv () {
       this.booking.cvv = this.cvv
-      this.testcvv = ((this.booking.cvv).length === 3 && (this.booking.ccnumber).length !== 0)
+      this.testcvv = ((this.booking.cvv).length === 3 && this.booking.cvv !== '')
       this.testfields()
     },
     postcode () {
@@ -313,7 +313,7 @@ export default {
     },
     ccnumber () {
       this.booking.ccnumber = this.ccnumber
-      this.testccnumber = ((this.booking.ccnumber).length === 16 && (this.booking.ccnumber).length !== 0)
+      this.testccnumber = ((this.booking.ccnumber).length === 16 && this.booking.ccnumber !== '')
       this.testfields()
     },
     refundpolicy () {
