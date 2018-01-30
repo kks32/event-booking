@@ -271,9 +271,9 @@ export default {
   },
   watch: {
     name () {
-      const letterNumber = /^[-a-zA-Z ]+$/
+      const regex = /^[-a-zA-Z ]+$/
       this.booking.name = this.name
-      this.testname = ((this.booking.name).length > 4 && letterNumber.test(this.booking.name))
+      this.testname = ((this.booking.name).length > 4 && regex.test(this.booking.name))
       this.testfields()
     },
     email () {
@@ -289,10 +289,10 @@ export default {
     },
     postcode () {
       this.evaluatepostcode()
-      if (this.testpostcode) {
+      if (this.testpostcode === true) {
         this.booking.postcode = this.postcode
+        this.testfields()
       }
-      this.testfields()
     },
     countries () {
       this.evaluatepostcode()
@@ -323,15 +323,15 @@ export default {
   },
   methods: {
     testfields () {
-      this.fieldcomplete = (this.testname && this.testemail && this.testaddress &&
-                            this.testcity && this.testpostcode && this.testccnumber &&
-                            this.testcvv && this.refundpolicy)
+      this.fieldcomplete = ((this.testname === true) && (this.testemail === true) && (this.testaddress === true) &&
+                            (this.testcity === true) && (this.testccnumber === true) && (this.testpostcode === true) &&
+                            (this.testcvv === true) && (this.refundpolicy === true))
     },
     evaluatepostcode () {
       if (this.country === 'United Kingdom') {
         const ukpostcode = this.postcode.replace(/\s/g, '')
         const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i
-        this.testpostcode = regex.test(ukpostcode)
+        this.testpostcode = (regex.test(ukpostcode))
       } else {
         this.testpostcode = true
       }
