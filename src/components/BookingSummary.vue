@@ -271,9 +271,9 @@ export default {
   },
   watch: {
     name () {
-      const letterNumber = /^[a-zA-Z]+$/
+      const letterNumber = /^[a-zA-Z ]+$/
       this.booking.name = this.name
-      this.testname = ((this.booking.name).length > 4 && this.booking.name.value.match(letterNumber))
+      this.testname = ((this.booking.name).length > 4 && letterNumber.test(this.booking.name))
       this.testfields()
     },
     email () {
