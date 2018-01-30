@@ -34,7 +34,7 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs6>
-            <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets ({{this.$store.getters['purchase/getnadults']}} adults, {{this.$store.getters['purchase/getnconcession']}} students and {{this.$store.getters['purchase/getnchild']}} child) and  {{this.$store.getters['purchase/get_nguidebooks']}} guides ({{booking.guidebooks}} ) is:</v-subheader>
+            <v-subheader>Total for {{this.$store.getters['purchase/getntickets']}} tickets ({{this.$store.getters['purchase/getnadults']}} adults, {{this.$store.getters['purchase/getnconcession']}} students and {{this.$store.getters['purchase/getnchild']}} child) and  {{this.$store.getters['purchase/get_nguidebooks']}} guide books ({{booking.guidebooks}} ) is:</v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-subheader> £{{parseFloat(this.$store.getters['purchase/gettotal']).toFixed(2)}}</v-subheader>
@@ -193,6 +193,10 @@
               <v-icon right dark>shopping_cart</v-icon>
             </v-btn>
           </v-flex>
+          <v-flex xs12 v-if="loading" class="text-xs-center">
+              Processing your request, please wait...
+              <v-progress-circular indeterminate v-bind:size="50" v-bind:width="7" color="black"></v-progress-circular>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-card-text>
@@ -207,11 +211,11 @@ export default {
   'name': 'Summary',
   data () {
     return {
-      name: 'Someone Anonymous',
-      email: 'test@gmail.com',
-      address: 'Somewhere',
-      city: 'Cambridge',
-      postcode: 'CB4 4LA',
+      name: '',
+      email: '',
+      address: '',
+      city: '',
+      postcode: '',
       country: 'United Kingdom',
       testname: 'false',
       testpostcode: 'false',
@@ -230,10 +234,12 @@ export default {
       paymentstatus: false,
       message: '',
       mask: 'credit-card',
-      ccnumber: '4444333322221111',
-      cvv: '123',
+      ccnumber: '',
+      cvv: '',
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+      // loading transition
+      loading: false,
       booking: {
         uuid: '',
         name: '',
@@ -254,7 +260,7 @@ export default {
         nguides: 0,
         guidebooks: [],
         ccnumber: '',
-        cvv: '123',
+        cvv: '',
         month: 1,
         year: 2018
       }
@@ -342,6 +348,7 @@ export default {
       this.booking.guidebooks = this.$store.getters['purchase/get_guidebooks']
     },
     createbooking () {
+      this.loading = true
       this.fetchbooking()
       HTTP.post('api/v1/bookings/' + this.booking.uuid, this.booking)
         .then(response => {
@@ -350,9 +357,11 @@ export default {
             this.message = 'Success'
             this.paymentstatus = true
             this.$store.dispatch('purchase/set_paymentstatus', true)
+            this.loading = false
           } else {
             this.message = 'Apologies! your payment failed!'
             this.$store.dispatch('purchase/set_paymentstatus', false)
+            this.loading = false
           }
         })
         .catch(e => {
