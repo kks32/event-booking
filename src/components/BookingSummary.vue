@@ -62,7 +62,7 @@
               min="5"
               max="255"
               required
-              :rules="[() => testname || 'Please enter a valid name']"
+              :rules="[() => testname || 'Please enter only unaccented alphabetical letters, A–Z or a–z or hyphen.']"
             />
           </v-flex>
         </v-layout>
@@ -271,7 +271,7 @@ export default {
   },
   watch: {
     name () {
-      const letterNumber = /^[a-zA-Z ]+$/
+      const letterNumber = /^[-a-zA-Z ]+$/
       this.booking.name = this.name
       this.testname = ((this.booking.name).length > 4 && letterNumber.test(this.booking.name))
       this.testfields()
