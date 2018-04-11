@@ -68,7 +68,7 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs6>
-            <v-subheader v-text="'Email address to subscribe to the mailing list'" />
+            <v-subheader v-text="'Email address'" />
           </v-flex>
           <v-flex xs6>
             <v-text-field
