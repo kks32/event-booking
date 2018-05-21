@@ -179,26 +179,30 @@
             <v-subheader>Refund policy:</v-subheader>
           </v-flex>
           <v-flex xs6>
-           <div class="container"><h3>King's College (Chapel and Grounds) tickets</h3> <div id="Refund"><h3>Refunds policy</h3> <ul><li>Tickets can only be exchanged or money refunded at the discretion of
-      the Head of Visitor Services or when the College is unexpectedly closed.</li> <li> Lost or stolen Tickets cannot be replaced or money refunded.</li> <li>Tickets are not transferable.</li></ul></div></div>
-            <v-checkbox label="Accept refund policy" v-model="refundpolicy" light></v-checkbox>
-
-          </v-flex>
-			
-			 <v-flex xs6>
-            <v-subheader>Privacy policy:</v-subheader>
-          </v-flex>
-          <v-flex xs6>
-			  <h3>Personal Data Usage Consent</h3> 
-			 <p>King’s College takes your privacy seriously.  We will only use your personal information to process and administer your request and to provide you with the services you have requested from us.  King’s College processes and stores personal information in accordance with the Data Protection Act, and the College’s Data Protection Policy <br><hr/></p>
-           <p><a href="http://www.kings.cam.ac.uk/about/data-protection.html" target="_blank">Click here to read more about King’s College Data Protection Policy</a></p>
-           <p>Please acknowledge that you have read the above information and give consent to the College to process and store your personal information. </p>
-			
-            <v-checkbox label="Click here to give consent" v-model="readprivacypolicy" light></v-checkbox>
-
-          </v-flex>
-			
-          <v-flex xs12 class="text-xs-right">
+           <div class="container">
+             <h3>King's College (Chapel and Grounds) tickets</h3>
+             <div id="Refund">
+               <h3>Refunds policy</h3>
+               <ul><li>Tickets can only be exchanged or money refunded at the discretion of
+                 the Head of Visitor Services or when the College is unexpectedly closed.</li>
+                 <li> Lost or stolen Tickets cannot be replaced or money refunded.</li>
+                 <li>Tickets are not transferable.</li>
+               </ul>
+             </div>
+           </div>
+           <v-checkbox label="Accept refund policy" v-model="refundpolicy" light></v-checkbox>
+         </v-flex>
+			   <v-flex xs6>
+           <v-subheader>Privacy policy:</v-subheader>
+         </v-flex>
+         <v-flex xs6>
+			       <h3>Personal Data Usage Consent</h3>
+			       <p>King’s College takes your privacy seriously.  We will only use your personal information to process and administer your request and to provide you with the services you have requested from us.  King’s College processes and stores personal information in accordance with the Data Protection Act, and the College’s Data Protection Policy <br><hr/></p>
+             <p><a href="http://www.kings.cam.ac.uk/about/data-protection.html" target="_blank">Click here to read more about King’s College Data Protection Policy</a></p>
+             <p>Please acknowledge that you have read the above information and give consent to the College to process and store your personal information. </p>
+			       <v-checkbox label="Click here to give consent" v-model="readprivacypolicy" light></v-checkbox>
+         </v-flex>
+			   <v-flex xs12 class="text-xs-right">
             <v-btn
               @click.native="createbooking()"
               color="green"
@@ -215,8 +219,7 @@
         </v-layout>
       </v-container>
     </v-card-text>
-</v-card>
-
+  </v-card>
 </div>
 </template>
 
@@ -242,7 +245,7 @@ export default {
       testmonth: 'false',
       testyear: 'false',
       refundpolicy: true,
-	  readprivacypolicy:false,
+      readprivacypolicy: false,
       fieldcomplete: false,
       uuid: '',
       countries: [],
@@ -336,9 +339,9 @@ export default {
     refundpolicy () {
       this.testfields()
     },
-	readprivacypolicy(){
-	  this.testfields()
-  }  
+    readprivacypolicy () {
+      this.testfields()
+    }
   },
   methods: {
     testfields () {
