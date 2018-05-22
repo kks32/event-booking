@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex>
-      <h4 class="mb-3">Bookings</h4>
+      <h1 class="mb-3">Bookings</h1>
       <v-date-picker
         class="mt-3"
         v-model="date"
