@@ -45,7 +45,7 @@ export default {
       date: null,
       allowedDates: [],
       baseurl: '/bookings/',
-      sessions: ['Morning', 'Afternoon'],
+      sessions: ['Morning', 'Afternoon', ''],
       bookings: []
     }
   },
