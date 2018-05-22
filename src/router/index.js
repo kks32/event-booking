@@ -6,6 +6,7 @@ import Callback from '@/components/Callback'
 import Config from '@/Config'
 import Contact from '@/Contact'
 import Refund from '@/Refund'
+import Report from '@/Report'
 import Shop from '@/Shop'
 
 import { requireAuth } from '../auth'
@@ -35,6 +36,11 @@ export default new Router({
     {
       path: '/refund',
       component: Refund
+    },
+    {
+      path: '/report',
+      beforeEnter: requireAuth,
+      component: Report
     },
     {
       path: '/callback',

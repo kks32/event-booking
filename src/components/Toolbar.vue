@@ -20,6 +20,7 @@ export default {
       title: 'King\'s College, Cambridge',
       items: [
         {'title': 'contact us', 'link': '/contact', 'show': false, 'router': false},
+        {'title': 'report', 'link': '/report', 'show': true, 'router': false},
         {'title': 'bookings', 'link': '/bookings', 'show': true, 'router': false},
         {'title': 'config', 'link': '/config', 'show': true, 'router': false},
         {'title': 'shop', 'link': '/', 'show': false, 'router': false}
