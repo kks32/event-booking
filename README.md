@@ -8,7 +8,6 @@
 
 * `npm` and `yarn` must be installed.
 
-
 ## Build Setup
 
 ``` bash
