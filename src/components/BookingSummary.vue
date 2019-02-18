@@ -318,7 +318,7 @@ export default {
     },
     city () {
       this.booking.city = this.city
-      this.testcity = ((this.booking.city).length > 4)
+      this.testcity = ((this.booking.city).length > 2)
       this.testfields()
     },
     address () {
