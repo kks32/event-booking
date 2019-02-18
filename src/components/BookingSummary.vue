@@ -136,7 +136,7 @@
             <v-subheader v-text="'city'" />
           </v-flex>
           <v-flex xs6>
-            <v-text-field label="city" counter v-model="city" min="5" max="255" :rules="[() => testcity || 'Please enter a valid city']"/>
+            <v-text-field label="city" counter v-model="city" min="2" max="255" :rules="[() => testcity || 'Please enter a valid city']"/>
           </v-flex>
           <v-flex xs6>
             <v-subheader v-text="'postcode'" />
